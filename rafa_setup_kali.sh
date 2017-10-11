@@ -7,11 +7,37 @@
 
 #just in case.
 
+echo ".##....##....###....##.......####"
+echo ".##...##....##.##...##........##."
+echo ".##..##....##...##..##........##."
+echo ".#####....##.....##.##........##."
+echo ".##..##...#########.##........##."
+echo ".##...##..##.....##.##........##."
+echo ".##....##.##.....##.########.####"
+echo "..######..########.########.##.....##.########."
+echo ".##....##.##..........##....##.....##.##.....##"
+echo ".##.......##..........##....##.....##.##.....##"
+echo "..######..######......##....##.....##.########."
+echo ".......##.##..........##....##.....##.##......."
+echo ".##....##.##..........##....##.....##.##......."
+echo "..######..########....##.....#######..##......."
+echo "..######...######..########..####.########..########"
+echo ".##....##.##....##.##.....##..##..##.....##....##..."
+echo ".##.......##.......##.....##..##..##.....##....##..."
+echo "..######..##.......########...##..########.....##..."
+echo ".......##.##.......##...##....##..##...........##..."
+echo ".##....##.##....##.##....##...##..##...........##..."
+echo "..######...######..##.....##.####.##...........##..."
 echo "========================="
 echo "=== Kali Setup Script ==="
-echo "=== Version: 1.0.0    ==="
-echo "=== Made by Rafa      ==="
+echo "=== Version: 1.0.1    ==="
+echo "=== Made by Rafa <3   ==="
 echo "========================="
+echo "" 
+echo -n "Starting script" && sleep .5
+echo -n "." && sleep 1
+echo -n "." && sleep 1
+echo -n "." && sleep 1 && echo ""
 echo ""
 cd /opt
 
@@ -25,24 +51,30 @@ echo "Installing: CME Bleeding-Edge"
     else
         echo "Found CME in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: Empire"
     if [ ! -d "Empire" ]; then
         git clone https://github.com/EmpireProject/Empire.git
-        echo "Done!"
+        echo "Done!" 
+	read -p "Do you want to install Empire after this script finishes (y/n)? " choice1
+            case "$choice1" in
+                y|Y ) installEmpire = true;;
+                n|N ) echo "Skipping installation. Manually run install.sh to install.";;
+                * ) echo "Skipping installation. Manually run install.sh to install.";;
+            esac
     else
         if [ -d "Empire" ]; then
             echo "Found Empire in /opt. Skipping installation."
-            read -p "Do you want to update instead (y/n)? " choice1
-            case "$choice1" in
+            read -p "Do you want to update instead (y/n)? " choice2
+            case "$choice2" in
                 y|Y ) (cd /opt/Empire && git pull);;
                 n|N ) echo "Not updating.";;
                 * ) echo "Not updating.";;
             esac
         fi
     fi
-sleep .5
+sleep 1
 
 echo "Installing: ffpasscracker"
     if [ ! -d "ffpasscracker" ]; then
@@ -50,7 +82,7 @@ echo "Installing: ffpasscracker"
     else
         echo "Found ffpasscracker script in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: EyeWitness"
     if [ ! -d "EyeWitness" ]; then
@@ -59,7 +91,7 @@ echo "Installing: EyeWitness"
     else
         echo "Found EyeWitness in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: impacket"
     if [ ! -d "impacket" ]; then
@@ -67,7 +99,7 @@ echo "Installing: impacket"
     else
         echo "Found impacket in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: mimikittenz"
     if [ ! -d "mimikittenz" ]; then
@@ -75,7 +107,7 @@ echo "Installing: mimikittenz"
     else
         echo "Found mimikittenz in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: mimipenguin"
     if [ ! -d "mimipenguin" ]; then
@@ -83,7 +115,7 @@ echo "Installing: mimipenguin"
     else
         echo "Found mimipenguin in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: NoSQLMap"
     if [ ! -d "NoSQLMap" ]; then
@@ -91,7 +123,7 @@ echo "Installing: NoSQLMap"
     else
         echo "Found mimipenguin in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: Masscan"
     if [ ! -d "masscan" ]; then
@@ -101,7 +133,7 @@ echo "Installing: Masscan"
     else
         echo "Found Masscan in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: PowerShell_Popup"
     if [ ! -d "PowerShell_Popup" ]; then
@@ -109,7 +141,7 @@ echo "Installing: PowerShell_Popup"
     else
         echo "Found PowerShell Popup in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: PowerSploit"
     if [ ! -d "PowerSploit" ]; then
@@ -117,7 +149,7 @@ echo "Installing: PowerSploit"
     else
         echo "Found PowerSploit in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: python-ffpassdecrypt"
     if [ ! -d "python-ffpassdecrypt" ]; then
@@ -125,7 +157,7 @@ echo "Installing: python-ffpassdecrypt"
     else
         echo "Found python-ffpassdecrypt in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: rtfm"
     if [ ! -d "rtfm" ]; then
@@ -142,7 +174,7 @@ echo "Installing: SecLists"
     else
         echo "Found Seclists in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: wifite"
     if [ ! -d "wifite" ]; then
@@ -150,7 +182,7 @@ echo "Installing: wifite"
     else
         echo "Found wifite in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: wifite2"
     if [ ! -d "wifite2" ]; then
@@ -158,7 +190,7 @@ echo "Installing: wifite2"
     else
         echo "Found wifite2 in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: nishang"
     if [ ! -d "./nishang/" ]; then
@@ -166,7 +198,7 @@ echo "Installing: nishang"
     else
         echo "Found nishang in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: Windows-Hacks"
     if [ ! -d "Windows-Hacks" ]; then
@@ -174,7 +206,7 @@ echo "Installing: Windows-Hacks"
     else
         echo "Found Windows-Hacks in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
 echo "Installing: PowerShell"
     if [ ! -d "PowerShell" ]; then
@@ -182,10 +214,12 @@ echo "Installing: PowerShell"
     else
         echo "Found PowerShell in /opt. Skipping..."
     fi
-sleep .5
+sleep 1
 
+if [ "$installEmpire" = true ]; then
+#installs Empire
+	(cd Empire && ./setup/install.sh)
+fi      
 
-#RTS
-#vncpwd
-#phenoelit
- 
+echo ""
+echo "DONE! Thanks. Come again!"
