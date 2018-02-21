@@ -28,11 +28,12 @@ echo "..######..##.......########...##..########.....##..."
 echo ".......##.##.......##...##....##..##...........##..."
 echo ".##....##.##....##.##....##...##..##...........##..."
 echo "..######...######..##.....##.####.##...........##..."
-echo "========================="
-echo "=== Kali Setup Script ==="
-echo "=== Version: 1.0.1    ==="
-echo "=== Made by Rafa <3   ==="
-echo "========================="
+echo "=============================="
+echo "=== Kali Setup Script      ==="
+echo "=== Version: 1.0.3         ==="
+echo "=== Last Updated: 02-14-17 ==="
+echo "=== Made by Rafa <3        ==="
+echo "=============================="
 echo "" 
 echo -n "Starting script" && sleep .5
 echo -n "." && sleep 1
@@ -96,6 +97,7 @@ sleep 1
 echo "Installing: impacket"
     if [ ! -d "impacket" ]; then
         git clone https://github.com/CoreSecurity/impacket.git
+	(cd impacket && python setup.py install)
     else
         echo "Found impacket in /opt. Skipping..."
     fi
@@ -216,10 +218,59 @@ echo "Installing: PowerShell"
     fi
 sleep 1
 
+echo "Installing: Worawit's MS17-010"
+    if [ ! -d "MS17-010" ]; then
+        git clone https://github.com/worawit/MS17-010.git
+    else
+        echo "Found MS17-010 in /opt. Skipping..."
+    fi
+sleep 1
 if [ "$installEmpire" = true ]; then
 #installs Empire
 	(cd Empire && ./setup/install.sh)
 fi      
+
+echo "Installing: Vulscan"
+    if [ ! -d "vulscan" ]; then
+        git clone https://github.com/scipag/vulscan.git
+	cp -r vulscan/ /usr/share/nmap/scripts/
+    else
+        echo "Found vulscan in /opt. Skipping..."
+    fi
+sleep 1
+
+echo "Installing: Vulners"
+    if [ ! -d "nmap-vulners" ]; then
+        git clone https://github.com/vulnersCom/nmap-vulners.git
+	cp nmap-vulners/vulners.nse /usr/share/nmap/scripts/
+    else
+        echo "Found Vulners Nmap Script in /opt. Skipping..."
+    fi
+sleep 1
+
+echo "Installing: CredNinja"
+    if [ ! -d "CredNinja" ]; then
+        git clone https://github.com/Raikia/CredNinja.git
+    else
+        echo "Found CredNinja in /opt. Skipping..."
+    fi
+sleep 1
+
+echo "Installing: ELF-Strings"
+    if [ ! -d "elf-strings" ]; then
+	git clone https://github.com/LloydLabs/elf-strings
+    else
+        echo "Found ELF-Strings in /opt. Skipping..."
+    fi
+sleep 1
+
+#echo "Installing: ___"
+#    if [ ! -d "___" ]; then
+#        git clone https://github.com/___.git
+#    else
+#        echo "Found ___ in /opt. Skipping..."
+#    fi
+#sleep 1
 
 echo ""
 echo "DONE! Thanks. Come again!"
