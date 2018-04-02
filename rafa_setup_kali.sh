@@ -4,9 +4,6 @@
 # It just downloads/installs tools and puts them in the opt folder.
 
 # mandatory banner lol.
-
-#just in case.
-
 echo ".##....##....###....##.......####"
 echo ".##...##....##.##...##........##."
 echo ".##..##....##...##..##........##."
