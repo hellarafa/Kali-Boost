@@ -30,8 +30,8 @@ echo ".##....##.##....##.##....##...##..##...........##..."
 echo "..######...######..##.....##.####.##...........##..."
 echo "=============================="
 echo "=== Kali Setup Script      ==="
-echo "=== Version: 1.0.3         ==="
-echo "=== Last Updated: 02-14-17 ==="
+echo "=== Version: 1.0.4         ==="
+echo "=== Last Updated: 04-02-18 ==="
 echo "=== Made by Rafa <3        ==="
 echo "=============================="
 echo "" 
@@ -47,7 +47,7 @@ echo "Installing: CME Bleeding-Edge"
         git clone https://github.com/byt3bl33d3r/CrackMapExec.git
         apt-get install -y libssl-dev libffi-dev python-dev build-essential
         (cd /opt/CrackMapExec && git submodule init && git submodule update --recursive)
-        python /opt/CrackMapExec/setup.py install
+	(cd /opt/CrackMapExec && python setup.py install)
         echo "DONE."
     else
         echo "Found CME in /opt. Skipping..."
@@ -61,9 +61,12 @@ echo "Installing: Empire"
 	read -p "Do you want to install Empire after this script finishes (y/n)? " choice1
             case "$choice1" in
                 y|Y ) installEmpire = true;;
-                n|N ) echo "Skipping installation. Manually run install.sh to install.";;
-                * ) echo "Skipping installation. Manually run install.sh to install.";;
+                n|N ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
+                * ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
             esac
+	if [ "$installEmpire" = true ]; then
+		(cd /opt/Empire && ./setup/install.sh)
+	fi
     else
         if [ -d "Empire" ]; then
             echo "Found Empire in /opt. Skipping installation."
@@ -261,6 +264,33 @@ echo "Installing: ELF-Strings"
 	git clone https://github.com/LloydLabs/elf-strings
     else
         echo "Found ELF-Strings in /opt. Skipping..."
+    fi
+sleep 1
+
+echo "Installing: dotdotslash"
+    if [ ! -d "dotdotslash" ]; then
+	git clone https://github.com/jcesarstef/dotdotslash.git
+    else
+        echo "Found dotdotslash in /opt. Skipping..."
+    fi
+sleep 1
+
+
+echo "Installing: burp-vulners-scanner"
+    if [ ! -d "burp-vulners-scanner" ]; then
+        git clone https://github.com/vulnersCom/burp-vulners-scanner.git
+	echo "Don't forget to manually install this module in Burp."
+	sleep 3
+    else
+        echo "Found burp-vulners-scanner in /opt. Skipping..."
+    fi
+sleep 1
+
+echo "Installing: whonow"
+    if [ ! -d "whonow" ]; then
+	git clone https://github.com/brannondorsey/whonow.git
+    else
+	echo "Found whonow in /opt. Skipping..."
     fi
 sleep 1
 
