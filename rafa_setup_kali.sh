@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# VERSION 1.0.4
 # This is my custom script to setup kali to my liking.
 # It just downloads/installs tools and puts them in the opt folder.
 
