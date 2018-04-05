@@ -20,17 +20,17 @@ empire() {
 	    if [ ! -d "Empire" ]; then
 		git clone https://github.com/EmpireProject/Empire.git
 		echo "Done!" 
-		read -p "Do you want to install Empire after this script finishes (y/n)? " choice1
+		read -p "Empire requires extra installation steps. Do you want to continue with the Empire install? (y/n)? " choice1
 		    case "$choice1" in
-			y|Y ) installEmpire = true;;
+			y|Y ) installEmpire;;
 			n|N ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
 			* ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
 		    esac
 		#installs Empire
-		if [ "$installEmpire" = true ]; then
-			(cd Empire && ./setup/install.sh)
-		fi
-	    else
+		installEmpire() {
+		     (cd Empire && ./setup/install.sh)
+	   	} 
+		
 		if [ -d "Empire" ]; then
 		    echo "Found Empire in /opt. Skipping installation."
 		    read -p "Do you want to update instead (y/n)? " choice2

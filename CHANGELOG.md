@@ -4,6 +4,7 @@ All future changes from this point on will be documented in this file.
 ## [1.1.0] - 2018-04-05
 ### Changed
 - Functionalized the entire script so that every git installation is in its own function. I did this to help the user specify which packages won't be installed by simply commenting out a function call at the bottom of the script.
+- Fixed the Empire Instalation. It still didn't work.
 
 ## [1.0.4] - 2018-04-02
 ### Added
