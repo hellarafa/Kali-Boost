@@ -21,8 +21,8 @@ empire() {
 		    echo "Found Empire in /opt. Skipping installation."
 		    read -p "Do you want to update instead (y/n)? " choice2
 		    case "$choice2" in
-			y|Y ) (cd /opt/Empire && git pull);;
-			n|N ) echo "Not updating.";;
+			[yY]|[yYeEsS] ) (cd /opt/Empire && git pull);;
+			[nN]|[nNoO] ) echo "Not updating.";;
 			* ) echo "Not updating.";;
 		    esac
 	     fi
@@ -31,8 +31,8 @@ empire() {
 		echo "Done!"
 		read -p "Empire requires extra installation steps. Do you want to continue with the Empire install? (y/n)? " choice1
 		    case "$choice1" in
-			y|Y ) (cd Empire && ./setup/install.sh);;
-			n|N ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
+			[yY]|[yYeEsS] ) (cd Empire && ./setup/install.sh);;
+			[nN]|[nNoO] ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
 			* ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
 		    esac
 	     fi
