@@ -1,4 +1,5 @@
 #!/bin/bash
+#VERSION 1.1.0
 
 cme_bleeding_edge() {
 	echo "Installing: CME Bleeding-Edge"
@@ -378,14 +379,15 @@ start() {
     whonow
 	
     #ADD
-    wfuzz
-    gobuster
-    mimikatz
-    https://github.com/gentilkiwi/mimikatz/releases
+    #wfuzz
+    #gobuster
+    #mimikatz
+    #https://github.com/gentilkiwi/mimikatz/releases
 
     #RED
-    windowsHacks
+    #windowsHacks
     echo -e "\n DONE! Thanks. Come again!"
 }
+
 cd /opt
 start
