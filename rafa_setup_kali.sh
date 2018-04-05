@@ -1,5 +1,5 @@
 #!/bin/bash
-#VERSION 1.1.0
+# VERSION 1.1.0
 
 cme_bleeding_edge() {
 	echo "Installing: CME Bleeding-Edge"
