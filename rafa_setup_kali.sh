@@ -2,7 +2,7 @@
 # VERSION 1.1.0
 
 cme_bleeding_edge() {
-	echo "Installing: CME Bleeding-Edge"
+	echo -e $green"Installing: CME Bleeding-Edge"$reset
 	    if [ ! -d "CrackMapExec" ]; then
 		git clone https://github.com/byt3bl33d3r/CrackMapExec.git
 		apt-get install -y libssl-dev libffi-dev python-dev build-essential
@@ -10,13 +10,13 @@ cme_bleeding_edge() {
 		(cd /opt/CrackMapExec && python setup.py install)
 		echo "DONE."
 	    else
-		echo "Found CME in /opt. Skipping..."
+		echo -e $red"Found CME in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 empire() {
-	echo "Installing: Empire"
+	echo -e $green"Installing: Empire"$reset
 	    if [ -d "Empire" ]; then
 		    echo "Found Empire in /opt. Skipping installation."
 		    read -p "Do you want to update instead (y/n)? " choice2
@@ -40,111 +40,111 @@ empire() {
 }
 
 firefox_password_cracker() {
-	echo "Installing: ffpasscracker"
+	echo -e $green"Installing: ffpasscracker"$reset
 	    if [ ! -d "ffpasscracker" ]; then
 		git clone https://github.com/pradeep1288/ffpasscracker.git
 	    else
-		echo "Found ffpasscracker script in /opt. Skipping..."
+		echo -e $red"Found ffpasscracker script in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 eyewitness() {
-	echo "Installing: EyeWitness"
+	echo -e $green"Installing: EyeWitness"$reset
 	    if [ ! -d "EyeWitness" ]; then
 		git clone https://github.com/ChrisTruncer/EyeWitness.git
 		(cd /opt/EyeWitness/setup/ && ./setup.sh )
 	    else
-		echo "Found EyeWitness in /opt. Skipping..."
+		echo -e $red"Found EyeWitness in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 impacket_tools() {
-	echo "Installing: impacket"
+	echo -e $green"Installing: impacket"$reset
 	    if [ ! -d "impacket" ]; then
 		git clone https://github.com/CoreSecurity/impacket.git
 		(cd impacket && python setup.py install)
 	    else
-		echo "Found impacket in /opt. Skipping..."
+		echo -e $red"Found impacket in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 mimikittenz() {
-	echo "Installing: mimikittenz"
+	echo -e $green"Installing: mimikittenz"$reset
 	    if [ ! -d "mimikittenz" ]; then
 		git clone https://github.com/putterpanda/mimikittenz.git
 	    else
-		echo "Found mimikittenz in /opt. Skipping..."
+		echo -e $red"Found mimikittenz in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 mimipenguin() {
-	echo "Installing: mimipenguin"
+	echo -e $green"Installing: mimipenguin"$reset
 	    if [ ! -d "mimipenguin" ]; then
 		git clone https://github.com/huntergregal/mimipenguin.git
 	    else
-		echo "Found mimipenguin in /opt. Skipping..."
+		echo -e $red"Found mimipenguin in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 noSQLMap() {
-	echo "Installing: NoSQLMap"
+	echo -e $green"Installing: NoSQLMap"$reset
 	    if [ ! -d "NoSQLMap" ]; then
 		git clone https://github.com/codingo/NoSQLMap.git
 	    else
-		echo "Found mimipenguin in /opt. Skipping..."
+		echo -e $red"Found mimipenguin in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 masscan() {
-	echo "Installing: Masscan"
+	echo -e $green"Installing: Masscan"$reset
 	    if [ ! -d "masscan" ]; then
 		git clone https://github.com/robertdavidgraham/masscan.git
 		apt-get install -y git gcc make libpcap-dev
 		(cd /opt/masscan && make -j && make install)
 	    else
-		echo "Found Masscan in /opt. Skipping..."
+		echo -e $red"Found Masscan in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 powershellPopup() {
-	echo "Installing: PowerShell_Popup"
+	echo -e $green"Installing: PowerShell_Popup"$reset
 	    if [ ! -d "PowerShell_Popup" ]; then
 		git clone https://github.com/cheetz/PowerShell_Popup.git
 	    else
-		echo "Found PowerShell Popup in /opt. Skipping..."
+		echo -e $red"Found PowerShell Popup in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 powersploit() {
-	echo "Installing: PowerSploit"
+	echo -e $green"Installing: PowerSploit"$reset
 	    if [ ! -d "PowerSploit" ]; then
 		git clone https://github.com/PowerShellMafia/PowerSploit.git
 	    else
-		echo "Found PowerSploit in /opt. Skipping..."
+		echo -e $red"Found PowerSploit in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 firefox_password_cracker2() {
-	echo "Installing: python-ffpassdecrypt"
+	echo -e $green"Installing: python-ffpassdecrypt"$reset
 	    if [ ! -d "python-ffpassdecrypt" ]; then
 		git clone https://github.com/nyov/python-ffpassdecrypt.git
 	    else
-		echo "Found python-ffpassdecrypt in /opt. Skipping..."
+		echo -e $red"Found python-ffpassdecrypt in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 rtfm() {
-	echo "Installing: rtfm"
+	echo -e $green"Installing: rtfm"$reset
 	    if [ ! -d "rtfm" ]; then
 		git clone https://github.com/leostat/rtfm.git
 		chmod +x /opt/rtfm/rtfm.py
@@ -155,227 +155,231 @@ rtfm() {
 }
 
 seclists() {
-	echo "Installing: SecLists"
+	echo -e $green"Installing: SecLists"$reset
 	    if [ ! -d "SecLists" ]; then
 		git clone https://github.com/danielmiessler/SecLists.git
 	    else
-		echo "Found Seclists in /opt. Skipping..."
+		echo -e $red"Found Seclists in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 wifite() {
-	echo "Installing: wifite"
+	echo -e $green"Installing: wifite"$reset
 	    if [ ! -d "wifite" ]; then
 		git clone https://github.com/derv82/wifite.git
 	    else
-		echo "Found wifite in /opt. Skipping..."
+		echo -e $red"Found wifite in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 wifite2() {
-	echo "Installing: wifite2"
+	echo -e $green"Installing: wifite2"$reset
 	    if [ ! -d "wifite2" ]; then
 		git clone https://github.com/derv82/wifite2.git
 	    else
-		echo "Found wifite2 in /opt. Skipping..."
+		echo -e $red"Found wifite2 in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 nishang() {
-	echo "Installing: nishang"
+	echo -e $green"Installing: nishang"$reset
 	    if [ ! -d "./nishang/" ]; then
 		git clone https://github.com/samratashok/nishang.git 
 	    else
-		echo "Found nishang in /opt. Skipping..."
+		echo -e $red"Found nishang in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 powershell() {
-	echo "Installing: PowerShell"
+	echo -e $green"Installing: PowerShell"$reset
 	    if [ ! -d "PowerShell" ]; then
 		git clone https://github.com/PowerShell/PowerShell.git
 	    else
-		echo "Found PowerShell in /opt. Skipping..."
+		echo -e $red"Found PowerShell in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 worawitms17() {
-	echo "Installing: Worawit's MS17-010"
+	echo -e $green"Installing: Worawit's MS17-010"$reset
 	    if [ ! -d "MS17-010" ]; then
 		git clone https://github.com/worawit/MS17-010.git
 	    else
-		echo "Found MS17-010 in /opt. Skipping..."
+		echo -e $red"Found MS17-010 in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 vulscan() {
-	echo "Installing: Vulscan"
+	echo -e $green"Installing: Vulscan"$reset
 	    if [ ! -d "vulscan" ]; then
 		git clone https://github.com/scipag/vulscan.git
 		cp -r vulscan/ /usr/share/nmap/scripts/
 	    else
-		echo "Found vulscan in /opt. Skipping..."
+		echo -e $red"Found vulscan in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 vulners() {
-	echo "Installing: Vulners"
+	echo -e $green"Installing: Vulners"$reset
 	    if [ ! -d "nmap-vulners" ]; then
 		git clone https://github.com/vulnersCom/nmap-vulners.git
 		cp nmap-vulners/vulners.nse /usr/share/nmap/scripts/
 	    else
-		echo "Found Vulners Nmap Script in /opt. Skipping..."
+		echo -e $red"Found Vulners Nmap Script in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 credninja() {
-	echo "Installing: CredNinja"
+	echo -e $green"Installing: CredNinja"$reset
 	    if [ ! -d "CredNinja" ]; then
 		git clone https://github.com/Raikia/CredNinja.git
 	    else
-		echo "Found CredNinja in /opt. Skipping..."
+		echo -e $red"Found CredNinja in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 elfStrings() {
-	echo "Installing: ELF-Strings"
+	echo -e $green"Installing: ELF-Strings"$reset
 	    if [ ! -d "elf-strings" ]; then
 		git clone https://github.com/LloydLabs/elf-strings
 	    else
-		echo "Found ELF-Strings in /opt. Skipping..."
+		echo -e $red"Found ELF-Strings in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 dotdotslash() {
-	echo "Installing: dotdotslash"
+	echo -e $green"Installing: dotdotslash"$reset
 	    if [ ! -d "dotdotslash" ]; then
 		git clone https://github.com/jcesarstef/dotdotslash.git
 	    else
-		echo "Found dotdotslash in /opt. Skipping..."
+		echo -e $red"Found dotdotslash in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 burp_vulners() {
-	echo "Installing: burp-vulners-scanner"
+	echo -e $green"Installing: burp-vulners-scanner"$reset
 	    if [ ! -d "burp-vulners-scanner" ]; then
 		git clone https://github.com/vulnersCom/burp-vulners-scanner.git
 		echo "Don't forget to manually install this module in Burp."
 		sleep 3
 	    else
-		echo "Found burp-vulners-scanner in /opt. Skipping..."
+		echo -e $red"Found burp-vulners-scanner in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 whonow() {
-	echo "Installing: whonow"
+	echo -e $green"Installing: whonow"$reset
 	    if [ ! -d "whonow" ]; then
 		git clone https://github.com/brannondorsey/whonow.git
 	    else
-		echo "Found whonow in /opt. Skipping..."
+		echo -e $red"Found whonow in /opt. Skipping..."$reset
+	    fi
+	sleep 1
+}
+
+wfuzz() {
+	echo -e $green"Installing: wfuzz"$reset
+	    if [ ! -d "wfuzz" ]; then
+	       git clone https://github.com/xmendez/wfuzz.git
+	    else
+		echo -e $red"Found wfuzz in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 windowsHacks() {
-	echo "Installing: Windows-Hacks"
+	echo -e $green"Installing: Windows-Hacks"$reset
 	    if [ ! -d "Windows-Hacks" ]; then
 		git clone https://github.com/LazoCoder/Windows-Hacks.git
 	    else
-		echo "Found Windows-Hacks in /opt. Skipping..."
+		echo -e $red"Found Windows-Hacks in /opt. Skipping..."$reset
 	    fi
 	sleep 1
 }
 
 #TEMPLATE
-#echo "Installing: ___"
+#echo -e $green"Installing: ___"$reset
 #    if [ ! -d "___" ]; then
 #        git clone https://github.com/___.git
 #    else
-#        echo "Found ___ in /opt. Skipping..."
+#        echo -e $red"Found ___ in /opt. Skipping..."$reset
 #    fi
 #sleep 1
 
 banner() {
     # mandatory banner lol.
-    echo -e $lightGreen".##....##....###....##.......####"$end
-    echo -e $lightGreen".##...##....##.##...##........##."$end
-    echo -e $lightGreen".##..##....##...##..##........##."$end
-    echo -e $lightGreen".#####....##.....##.##........##."$end
-    echo -e $lightGreen".##..##...#########.##........##."$end
-    echo -e $lightGreen".##...##..##.....##.##........##."$end
-    echo -e $lightGreen".##....##.##.....##.########.####"$end
-    echo -e $lightGreen"..######..########.########.##.....##.########."$end
-    echo -e $lightGreen".##....##.##..........##....##.....##.##.....##"$end
-    echo -e $lightGreen".##.......##..........##....##.....##.##.....##"$end
-    echo -e $lightGreen"..######..######......##....##.....##.########."$end
-    echo -e $lightGreen".......##.##..........##....##.....##.##......."$end
-    echo -e $lightGreen".##....##.##..........##....##.....##.##......."$end
-    echo -e $lightGreen"..######..########....##.....#######..##......."$end
-    echo -e $lightGreen"..######...######..########..####.########..########"$end
-    echo -e $lightGreen".##....##.##....##.##.....##..##..##.....##....##..."$end
-    echo -e $lightGreen".##.......##.......##.....##..##..##.....##....##..."$end
-    echo -e $lightGreen"..######..##.......########...##..########.....##..."$end
-    echo -e $lightGreen".......##.##.......##...##....##..##...........##..."$end
-    echo -e $lightGreen".##....##.##....##.##....##...##..##...........##..."$end
-    echo -e $lightGreen"..######...######..##.....##.####.##...........##..."$end
-    echo -e $lightGreen"=============================="$end
-    echo -e $lightGreen"=== Kali Setup Script      ==="$end
-    echo -e $lightGreen"=== Version: 1.1.0         ==="$end
-    echo -e $lightGreen"=== Last Updated: 04-05-18 ==="$end
-    echo -e $lightGreen"=== Made by @hellarafa <3  ==="$end
-    echo -e $lightGreen"=============================="$end
-    echo "" 
-    echo -n "Starting Script:" && sleep .5
-    #echo -n "." && sleep 1
-    for i in {16..21} {21..16};do echo -en "\e[48;5;${i}m \e[0m";sleep .1; echo -en "\e[48;5;${i}m \e[0m";sleep .1; echo -en "\e[48;5;${i}m \e[0m"; done
-    #echo -n "." && sleep 1
-    #echo -n "." && sleep 1 && echo ""
+    echo -e $green".##....##....###....##.......####"$reset
+    echo -e $green".##...##....##.##...##........##."$reset
+    echo -e $green".##..##....##...##..##........##."$reset
+    echo -e $green".#####....##.....##.##........##."$reset
+    echo -e $green".##..##...#########.##........##."$reset
+    echo -e $green".##...##..##.....##.##........##."$reset
+    echo -e $green".##....##.##.....##.########.####"$reset
+    echo -e $green"..######..########.########.##.....##.########."$reset
+    echo -e $green".##....##.##..........##....##.....##.##.....##"$reset
+    echo -e $green".##.......##..........##....##.....##.##.....##"$reset
+    echo -e $green"..######..######......##....##.....##.########."$reset
+    echo -e $green".......##.##..........##....##.....##.##......."$reset
+    echo -e $green".##....##.##..........##....##.....##.##......."$reset
+    echo -e $green"..######..########....##.....#######..##......."$reset
+    echo -e $green"..######...######..########..####.########..########"$reset
+    echo -e $green".##....##.##....##.##.....##..##..##.....##....##..."$reset
+    echo -e $green".##.......##.......##.....##..##..##.....##....##..."$reset
+    echo -e $green"..######..##.......########...##..########.....##..."$reset
+    echo -e $green".......##.##.......##...##....##..##...........##..."$reset
+    echo -e $green".##....##.##....##.##....##...##..##...........##..."$reset
+    echo -e $green"..######...######..##.....##.####.##...........##..."$reset
+    echo -e "=============================="
+    echo -e "===$lightCyan Kali Setup Script      $reset==="
+    echo -e "===$lightCyan Version:$reset$lightYellow 1.1.0         $reset==="
+    echo -e "===$lightCyan Last Updated:$reset$lightYellow 04-05-18 $reset==="
+    echo -e "===$lightCyan Made by @hellarafa <3  $reset==="
+    echo -e "=============================="
     echo ""
 }
 
 start() {
     banner
-    cme_bleeding_edge
-    empire
-    firefox_password_cracker
-    eyewitness
-    impacket_tools
-    mimikittenz
-    mimipenguin
-    noSQLMap
-    masscan
-    powershellPopup
-    powersploit
-    firefox_password_cracker2
-    rtfm
-    seclists
-    wifite
-    wifite2
-    nishang
-    powershell
-    worawitms17
-    vulscan
-    vulners
-    credninja
-    elfStrings
-    dotdotslash
-    burp_vulners
-    whonow
-	
+    cme_bleeding_edge #1
+    empire #2
+    firefox_password_cracker #3
+    eyewitness #4
+    impacket_tools #5
+    mimikittenz #6
+    mimipenguin #7
+    noSQLMap #8
+    masscan #9
+    powershellPopup #10
+    powersploit #11
+    firefox_password_cracker2 #12
+    rtfm #13
+    seclists #14
+    wifite #15
+    wifite2 #16
+    nishang #17
+    powershell #18
+    worawitms17 #19
+    vulscan #20
+    vulners #21
+    credninja #22
+    elfStrings #23
+    dotdotslash #24
+    burp_vulners #25
+    whonow #26
+    wfuzz #27 
+
     #ADD
-    #wfuzz
     #gobuster
     #mimikatz
     #https://github.com/gentilkiwi/mimikatz/releases
@@ -386,22 +390,18 @@ start() {
 }
 
 #set the colors up.
-end="\e[0m"
-red="\e[31m"
-green="\e[32m"
-yellow="\e[33m"
-blue="\e[34m"
-magenta="\e[35m"
-cyan="\e[36m"
-lightRed="\e[91m"
-lightGreen="\e[38;5;46m"
-lightYellow="\e[93m"
-lightBlue="\e[94m"
-lightMagenta="\e[95m"
-lightCyan="\e[96m"
-
-
+readonly reset="\e[0m"
+readonly red="\e[31m"
+#readonly yellow="\e[33m"
+#readonly blue="\e[34m"
+#readonly magenta="\e[35m"
+#readonly cyan="\e[36m"
+readonly green="\e[38;5;46m"
+readonly lightYellow="\e[93m"
+#readonly lightBlue="\e[94m"
+#readonly lightMagenta="\e[95m"
+readonly lightCyan="\e[96m"
 
 cd /opt
-#start
-banner
+start
+
