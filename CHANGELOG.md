@@ -5,13 +5,15 @@ All future changes from this point on will be documented in this file.
 ### Added
 - Added comments like a legit programmer.
 - wfuzz from [@xmendez](https://github.com/xmendez/wfuzz)
+- LinEnum from [@cheetz](https://github.com/cheetz/LinEnum)
+- MeterSSH from [@trustedsec](https://github.com/trustedsec/meterssh)
 
 ### Changed
 - Functionalized the entire script so that every git installation is in its own function. I did this to help the user specify which packages won't be installed by simply commenting out a function call at the bottom of the script.
 - Fixed the Empire Instalation. It still didn't work.
 - Made everything 1337 colorful. 
 - Changed output messages.
-- Included a debug function.
+- Included a debug function as well as some internal functions to make the output look nicer.
 
 ## [1.0.4] - 2018-04-02
 ### Added
