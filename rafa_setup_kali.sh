@@ -107,7 +107,7 @@ impacket_tools() {
 mimikittenz() {
 	echo -e $green"Installing: mimikittenz"$reset
 	    if [ ! -d "mimikittenz" ]; then
-		git clone https://github.com/putterpanda/mimikittenz.git
+		    git clone https://github.com/putterpanda/mimikittenz.git
 	        ret="$?"
             success "Successfully installed mimikittenz."
             debug
@@ -120,9 +120,12 @@ mimikittenz() {
 mimipenguin() {
 	echo -e $green"Installing: mimipenguin"$reset
 	    if [ ! -d "mimipenguin" ]; then
-		git clone https://github.com/huntergregal/mimipenguin.git
-	    else
-		echo -e $red"Found mimipenguin in /opt. Skipping..."$reset
+		    git clone https://github.com/huntergregal/mimipenguin.git
+	        ret="$?"
+            success "Successfully installed mimipenguin."
+            debug
+        else
+		    skipmsg "Found mimipenguin in /opt. Skipping installation."
 	    fi
 	sleep 1
 }
