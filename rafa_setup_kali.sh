@@ -1,50 +1,77 @@
 #!/bin/bash
 # VERSION 1.1.0
 
+#################### Individual Tools
+#  This section is where all the tools are. Each tool lives in a function
+#  that is called from the call table below.
+#
+
+test() {
+    echo -e $green"INSTALL: TEST"$reset
+    :
+    ret="$?"
+    success "DANK"
+    debug
+    echo -e $red"Found tool in /opt. Skipping..."$reset
+    skipmsg "Found tool in /opt. Skipping..."$reset
+    sleep 1
+}
+
 cme_bleeding_edge() {
 	echo -e $green"Installing: CME Bleeding-Edge"$reset
 	    if [ ! -d "CrackMapExec" ]; then
-		git clone https://github.com/byt3bl33d3r/CrackMapExec.git
-		apt-get install -y libssl-dev libffi-dev python-dev build-essential
-		(cd /opt/CrackMapExec && git submodule init && git submodule update --recursive)
-		(cd /opt/CrackMapExec && python setup.py install)
-		echo "DONE."
+		    git clone https://github.com/byt3bl33d3r/CrackMapExec.git
+		    apt-get install -y libssl-dev libffi-dev python-dev build-essential
+		    ret="$?"
+            (cd /opt/CrackMapExec && git submodule init && git submodule update --recursive)
+		    (cd /opt/CrackMapExec && python setup.py install)
+		    success "Successfully installed CrackMapExec Bleeding Edge"
 	    else
-		echo -e $red"Found CME in /opt. Skipping..."$reset
+            skipmsg "Found CrackMapExec Bleeding-Edge in /opt. Skipping installation."
 	    fi
+    debug
 	sleep 1
 }
 
 empire() {
 	echo -e $green"Installing: Empire"$reset
 	    if [ -d "Empire" ]; then
-		    echo "Found Empire in /opt. Skipping installation."
+		    skipmsg "Found Empire in /opt. Skipping installation."
 		    read -p "Do you want to update instead (y/n)? " choice2
 		    case "$choice2" in
-			[yY]|[yYeEsS] ) (cd /opt/Empire && git pull);;
-			[nN]|[nNoO] ) echo "Not updating.";;
-			* ) echo "Not updating.";;
+			    [yY]|[yYeEsS] ) (cd /opt/Empire && git pull)
+                            ret="$?"
+                            success "Successfully updated Empire."
+                            ;;
+			    [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
+			* ) skipmsg "Not updating Empire.";;
 		    esac
-	     fi
-	     if [ ! -d "Empire" ]; then
-		git clone https://github.com/EmpireProject/Empire.git
-		echo "Done!"
-		read -p "Empire requires extra installation steps. Do you want to continue with the Empire install? (y/n)? " choice1
+	    fi
+	    if [ ! -d "Empire" ]; then
+		    git clone https://github.com/EmpireProject/Empire.git
+		    read -p "Empire requires extra installation steps. Do you want to continue with the Empire install? (y/n)? " choice1
 		    case "$choice1" in
-			[yY]|[yYeEsS] ) (cd Empire && ./setup/install.sh);;
-			[nN]|[nNoO] ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
-			* ) echo "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
+			    [yY]|[yYeEsS] ) (cd Empire && ./setup/install.sh)
+                            ret="$?"
+                            success "Successfully installed Empire."
+                            ;;
+			   [nN]|[nNoO] ) skipmsg "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
+			* ) skipmsg "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
 		    esac
-	     fi
+	    fi
+        debug
 	sleep 1
 }
 
 firefox_password_cracker() {
 	echo -e $green"Installing: ffpasscracker"$reset
 	    if [ ! -d "ffpasscracker" ]; then
-		git clone https://github.com/pradeep1288/ffpasscracker.git
-	    else
-		echo -e $red"Found ffpasscracker script in /opt. Skipping..."$reset
+		    git clone https://github.com/pradeep1288/ffpasscracker.git
+	        ret="$?"
+            success "Successfully installed ffpasscracker."
+            debug
+        else
+		    skipmsg "Found ffpasscracker script in /opt. Skipping installation."
 	    fi
 	sleep 1
 }
@@ -52,21 +79,27 @@ firefox_password_cracker() {
 eyewitness() {
 	echo -e $green"Installing: EyeWitness"$reset
 	    if [ ! -d "EyeWitness" ]; then
-		git clone https://github.com/ChrisTruncer/EyeWitness.git
-		(cd /opt/EyeWitness/setup/ && ./setup.sh )
-	    else
-		echo -e $red"Found EyeWitness in /opt. Skipping..."$reset
+		    git clone https://github.com/ChrisTruncer/EyeWitness.git
+		    (cd /opt/EyeWitness/setup/ && ./setup.sh )
+	        ret="$?"
+            success "Successfully installed EyeWitness."
+            debug
+        else
+		    skipmsg "Found EyeWitness in /opt. Skipping installation."
 	    fi
 	sleep 1
 }
 
 impacket_tools() {
-	echo -e $green"Installing: impacket"$reset
+	echo -e $green"Installing: Impacket"$reset
 	    if [ ! -d "impacket" ]; then
-		git clone https://github.com/CoreSecurity/impacket.git
-		(cd impacket && python setup.py install)
-	    else
-		echo -e $red"Found impacket in /opt. Skipping..."$reset
+		    git clone https://github.com/CoreSecurity/impacket.git
+		    (cd impacket && python setup.py install)
+	        ret="$?"
+            success "Successfully installed Impacket."
+            debug
+        else
+		   skipmsg "Found impacket in /opt. Skipping installation."
 	    fi
 	sleep 1
 }
@@ -75,8 +108,11 @@ mimikittenz() {
 	echo -e $green"Installing: mimikittenz"$reset
 	    if [ ! -d "mimikittenz" ]; then
 		git clone https://github.com/putterpanda/mimikittenz.git
-	    else
-		echo -e $red"Found mimikittenz in /opt. Skipping..."$reset
+	        ret="$?"
+            success "Successfully installed mimikittenz."
+            debug
+        else
+		    skipmsg "Found mimikittenz in /opt. Skipping installation."
 	    fi
 	sleep 1
 }
@@ -298,23 +334,37 @@ wfuzz() {
 	sleep 1
 }
 
+#################### REDTEAM EVIL STUFF
+#  These scripts are malicious in nature and are usually not used
+#  in Enterprise/Business engagements. Therefore, the function that
+#  calls these is commented out but feel free to install them if you'd
+#  like. CCDC people, feel free to use and/or contribute. ;-)
+
 windowsHacks() {
-	echo -e $green"Installing: Windows-Hacks"$reset
-	    if [ ! -d "Windows-Hacks" ]; then
-		git clone https://github.com/LazoCoder/Windows-Hacks.git
-	    else
-		echo -e $red"Found Windows-Hacks in /opt. Skipping..."$reset
-	    fi
-	sleep 1
+    echo -e $green"Installing: Windows-Hacks"$reset
+        if [ ! -d "Windows-Hacks" ]; then
+        git clone https://github.com/LazoCoder/Windows-Hacks.git
+        else
+        echo -e $red"Found Windows-Hacks in /opt. Skipping..."$reset
+        fi
+    sleep 1
 }
 
-#TEMPLATE
+#################### TEMPLATE
+#  if you want to add your own tool, just add this template code around
+#  a function then add it to the call table below and you'll be good 
+#  to go. Have fun.
+
 #echo -e $green"Installing: ___"$reset
 #    if [ ! -d "___" ]; then
 #        git clone https://github.com/___.git
+#        ret="$?"
 #    else
 #        echo -e $red"Found ___ in /opt. Skipping..."$reset
 #    fi
+#    success "Dank AF FAM"
+#    debug
+
 #sleep 1
 
 banner() {
@@ -341,13 +391,17 @@ banner() {
     echo -e $green".##....##.##....##.##....##...##..##...........##..."$reset
     echo -e $green"..######...######..##.....##.####.##...........##..."$reset
     echo -e "=============================="
-    echo -e "===$lightCyan Kali Setup Script      $reset==="
     echo -e "===$lightCyan Version:$reset$lightYellow 1.1.0         $reset==="
     echo -e "===$lightCyan Last Updated:$reset$lightYellow 04-05-18 $reset==="
     echo -e "===$lightCyan Made by @hellarafa <3  $reset==="
     echo -e "=============================="
     echo ""
 }
+
+#################### CALL TABLE & START
+#  This is where the program starts. I call the section that follows the call table. If you 
+#  comment out a line, that program does not get installed. Simple as that. As a default, all
+#  tools are installed except the REDTEAM EVIL STUFF. You can install it if you'd like.
 
 start() {
     banner
@@ -380,8 +434,8 @@ start() {
     wfuzz #27 
 
     #ADD
-    #gobuster
     #mimikatz
+    #peterkim's tools
     #https://github.com/gentilkiwi/mimikatz/releases
 
     #RED
@@ -389,20 +443,53 @@ start() {
     echo -e "\n DONE! Thanks. Come again!"
 }
 
-#set the colors up.
+#################### PROGRAM FUNCTIONS
+# Functions that make the program run nicer.
+#
+
+msg() {
+    printf '%b\n\n' "$1" >&2
+}
+
+success() {
+    if [ "$ret" -eq '0' ]; then
+        msg "\33[32m[✔]\33[0m ${1}${2}"
+    fi
+}
+
+error() {
+    msg "\33[31m[✘]\33[0m ${1}${2}"
+    exit 1
+}
+
+skipmsg(){
+    msg "\33[31m[✘]\33[0m ${1}${2}"
+}
+
+debug() {
+    if [ "$debug_mode" -eq '1'  ] && [ "$ret" -gt '1'  ]; then
+        msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, I'm sorry for that."
+    fi
+}
+
+
+#################### SETUP PARAMETERS
+# Just all the setup parameters, variables and stuff.
+#
+debug_mode='0'
 readonly reset="\e[0m"
 readonly red="\e[31m"
+readonly green="\e[38;5;46m"
+readonly lightYellow="\e[93m"
+readonly lightCyan="\e[96m"
 #readonly yellow="\e[33m"
 #readonly blue="\e[34m"
 #readonly magenta="\e[35m"
 #readonly cyan="\e[36m"
-readonly green="\e[38;5;46m"
-readonly lightYellow="\e[93m"
 #readonly lightBlue="\e[94m"
 #readonly lightMagenta="\e[95m"
-readonly lightCyan="\e[96m"
 
 cd /opt
-start
-
-
+#start
+banner
+test
