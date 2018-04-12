@@ -1,21 +1,56 @@
 #!/bin/bash
-# VERSION 1.1.0
 
-#################### Individual Tools
-#  This section is where all the tools are. Each tool lives in a function
-#  that is called from the call table below.
+#################### START
 #
+#  VERSION 1.1.0
+#  This is where the program starts. I call the section that follows the call table. If you 
+#  comment out a line, that program does not get installed. Simple as that. As a default, all
+#  tools are installed except the REDTEAM EVIL STUFF. You can install it if you'd like.
 
-test() {
-    echo -e $green"INSTALL: TEST"$reset
-    :
-    ret="$?"
-    success "DANK"
-    debug
-    echo -e $red"Found tool in /opt. Skipping..."$reset
-    skipmsg "Found tool in /opt. Skipping..."$reset
-    sleep 1
+start() {
+    banner
+    cme_bleeding_edge #1
+    empire #2
+    firefox_password_cracker #3
+    eyewitness #4
+    impacket_tools #5
+    mimikittenz #6
+    mimipenguin #7
+    noSQLMap #8
+    masscan #9
+    powershellPopup #10
+    powersploit #11
+    firefox_password_cracker2 #12
+    rtfm #13
+    seclists #14
+    wifite #15
+    wifite2 #16
+    nishang #17
+    worawitms17 #18
+    vulscan #19
+    vulners #20
+    credninja #21
+    elfStrings #22
+    dotdotslash #23
+    burp_vulners #24
+    whonow #25
+    wfuzz #26
+    probableWordlists #27
+
+    #ADD
+    #mimikatz
+    #peterkim's tools
+    #https://github.com/gentilkiwi/mimikatz/releases
+
+    #REDTEAM SCRIPTS
+#    redteam #uncomment this line to invoke. Have fun.
+    echo -e $lightCyan"\n Finished installing all the tools! Have a great day."$reset.
 }
+
+redteam() {
+    windowsHacks
+}
+
 
 cme_bleeding_edge() {
 	echo -e $green"Installing: CME Bleeding-Edge"$reset
@@ -405,9 +440,12 @@ probableWordlists(){
 windowsHacks() {
     echo -e $green"Installing: Windows-Hacks"$reset
         if [ ! -d "Windows-Hacks" ]; then
-        git clone https://github.com/LazoCoder/Windows-Hacks.git
+            git clone https://github.com/LazoCoder/Windows-Hacks.git
+            ret="$?"
+            success "Successfully installed Windows-Hacks."
+            debug
         else
-        echo -e $red"Found Windows-Hacks in /opt. Skipping..."$reset
+            skipmsg "Found Windows-Hacks in /opt. Skipping installation."
         fi
     sleep 1
 }
@@ -421,12 +459,11 @@ windowsHacks() {
 #    if [ ! -d "___" ]; then
 #        git clone https://github.com/___.git
 #        ret="$?"
+#        success "DANK AF FAM"
+#        debug
 #    else
-#        echo -e $red"Found ___ in /opt. Skipping..."$reset
+#        skipmsg "Found ___ in /opt. Skipping installation."
 #    fi
-#    success "Dank AF FAM"
-#    debug
-
 #sleep 1
 
 banner() {
@@ -498,59 +535,7 @@ readonly red="\e[31m"
 readonly green="\e[38;5;46m"
 readonly lightYellow="\e[93m"
 readonly lightCyan="\e[96m"
-#readonly yellow="\e[33m"
-#readonly blue="\e[34m"
-#readonly magenta="\e[35m"
-#readonly cyan="\e[36m"
-#readonly lightBlue="\e[94m"
-#readonly lightMagenta="\e[95m"
-
-#################### CALL TABLE & START
-#  This is where the program starts. I call the section that follows the call table. If you 
-#  comment out a line, that program does not get installed. Simple as that. As a default, all
-#  tools are installed except the REDTEAM EVIL STUFF. You can install it if you'd like.
-
-start() {
-    banner
-    cme_bleeding_edge #1
-    empire #2
-    firefox_password_cracker #3
-    eyewitness #4
-    impacket_tools #5
-    mimikittenz #6
-    mimipenguin #7
-    noSQLMap #8
-    masscan #9
-    powershellPopup #10
-    powersploit #11
-    firefox_password_cracker2 #12
-    rtfm #13
-    seclists #14
-    wifite #15
-    wifite2 #16
-    nishang #17
-    worawitms17 #18
-    vulscan #19
-    vulners #20
-    credninja #21
-    elfStrings #22
-    dotdotslash #23
-    burp_vulners #24
-    whonow #25
-    wfuzz #26
-    probableWordlists #27
-
-    #ADD
-    #mimikatz
-    #peterkim's tools
-    #https://github.com/gentilkiwi/mimikatz/releases
-
-    #RED
-    #windowsHacks
-    echo -e "\n DONE! Thanks. Come again!"
-}
 
 cd /opt
 #start
 banner
-test
