@@ -1,11 +1,14 @@
 #!/bin/bash
+#version
+v="1.1.0"
 
-#################### START
+#################### ABOUT
 #
-v="1.1.0" #version
-#  This is where the program starts. I call the section that follows the call table. If you 
-#  comment out a line, that program does not get installed. Simple as that. As a default, all
-#  tools are installed except the REDTEAM EVIL STUFF. You can install it if you'd like.
+#  Made by Rafa.
+#  Github: @hellarafa
+#  This script installs tools not found in Kali and updated versions of pre-existing
+#  tools. I don't own any of the tools listed below. 
+#
 
 usage() {
     echo -e "#########################################################\n"
@@ -18,6 +21,12 @@ usage() {
     echo "     -h     Show this help screen"
     echo -e "\n#########################################################"
 }
+
+#################### START
+#
+#  This is where the program starts. I call the section that follows the call table. If you 
+#  comment out a line, that program does not get installed. Simple as that. As a default, all
+#  tools are installed. 
 
 start() {
     banner
@@ -50,15 +59,45 @@ start() {
     probableWordlists #27
     linEnum #28
     meterssh #29
+    sigThief #30
+    veilFramework #31
 
-    #ADD
-    #mimikatz
-    #https://github.com/gentilkiwi/mimikatz/releases
+    #ADD LATER
+    #mimikatz trunk
+    #https://github.com/gentilkiwi/mimikatz/releases/latest
     echo -e $lightCyan"\nFinished installing all the tools! Have a great day."$reset
 }
 
 redteam() {
-    windowsHacks
+    windowsHacks #1
+    backdoorFactory #2
+}
+
+veilFramework() {
+    echo -e $green"Installing: Veil-Framework"$reset
+    if [ ! -d "Veil" ]; then
+        git clone https://github.com/Veil-Framework/Veil.git
+        ret="$?"
+        success "Successfully installed Veil."
+        debug
+        (cd Veil/ && ./Veil.py --setup)
+    else
+        skipmsg "Found Veil in /opt. Skipping installation."
+    fi
+    sleep 1
+}
+
+sigThief() {
+    echo -e $green"Installing: SigThief"$reset
+    if [ ! -d "SigThief" ]; then
+        git clone https://github.com/secretsquirrel/SigThief.git
+        ret="$?"
+        success "Successfully installed SigThief."
+        debug
+    else
+        skipmsg "Found SigThief in /opt. Skipping installation."
+    fi
+    sleep 1
 }
 
 meterssh() {
@@ -469,7 +508,9 @@ probableWordlists(){
     sleep 1
 }
 
+
 #################### REDTEAM EVIL STUFF
+#
 #  These scripts are more evil in nature and are usually not used
 #  in Enterprise/Business engagements. In other words, they are meant 
 #  to be eitherdestructive, obtrusive, taunting, harrasing or are 
@@ -489,7 +530,21 @@ windowsHacks() {
     sleep 1
 }
 
+backdoorFactory() {
+    echo -e $green"Installing : Backdoor-Factory"$reset
+        if [ ! -d "the-backdoor-factory" ]; then
+            git clone https://github.com/secretsquirrel/the-backdoor-factory.git
+            ret="$?"
+            success "Successfully installed The-Backdoor-Factory."
+            debug
+        else
+            skipmsg "Found The-Backdoor-Factory in /opt. Skipping installation."
+        fi
+    sleep 1
+}
+
 #################### TEMPLATE
+#
 #  if you want to add your own tool, just add this template code around
 #  a function then add it to the call table below and you'll be good 
 #  to go. Have fun.
@@ -537,7 +592,8 @@ banner() {
 }
 
 #################### PROGRAM FUNCTIONS
-# Functions that make the program run nicer.
+#
+#  Functions that make the program run nicer.
 #
 
 msg() {
@@ -568,8 +624,10 @@ debug() {
 }
 
 #################### SETUP PARAMETERS
-# Just all the setup parameters, variables and stuff.
 #
+#  Just all the setup parameters, variables and stuff.
+#
+
 debug_mode='0'
 cd /opt
 readonly reset="\e[0m"
