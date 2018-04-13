@@ -3,6 +3,7 @@ All future changes from Version 1.0.4 and onward will be documented in this file
 
 ## [1.1.0] - 2018-04-12
 ### Added
+- The option for Verbosity.
 - Added comments like a legit programmer.
 - wfuzz from [@xmendez](https://github.com/xmendez/wfuzz)
 - LinEnum from [@cheetz](https://github.com/cheetz/LinEnum)
