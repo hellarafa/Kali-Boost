@@ -14,11 +14,12 @@ usage() {
     echo -e "#########################################################\n"
     echo -e "Usage: kali-setup-script.sh [-args]\n"
     echo "     OPTIONS:"
-    echo "     -s     Start the installation"
-    echo "     -r     Install ONLY the red team scripts"
+    echo "     -s     Start the installation."
+    echo "     -r     Install ONLY the red team scripts."
     echo "     -e     Install EVERYTHING."
-    echo "     -b     Show the banner"
-    echo "     -h     Show this help screen"
+    echo "     -v     Be verbose."
+    echo "     -b     Show the banner."
+    echo "     -h     Show this help screen."
     echo -e "\n#########################################################"
 }
 
@@ -65,32 +66,28 @@ start() {
     #ADD LATER
     #mimikatz trunk
     #https://github.com/gentilkiwi/mimikatz/releases/latest
-    echo -e $lightCyan"\nFinished installing all the tools! Have a great day."$reset
 }
+
+finished() {
+    echo -e $lightCyan"\nFinished installing all of the tools! Have a great day."$reset
+}
+
 
 redteam() {
     windowsHacks #1
     backdoorFactory #2
 }
 
-veilFramework() {
-    echo -e $green"Installing: Veil-Framework"$reset
-    if [ ! -d "Veil" ]; then
-        git clone https://github.com/Veil-Framework/Veil.git
-        ret="$?"
-        success "Successfully installed Veil."
-        debug
-        (cd Veil/ && ./Veil.py --setup)
-    else
-        skipmsg "Found Veil in /opt. Skipping installation."
-    fi
-    sleep 1
-}
-
 sigThief() {
     echo -e $green"Installing: SigThief"$reset
     if [ ! -d "SigThief" ]; then
-        git clone https://github.com/secretsquirrel/SigThief.git
+        if [ "$verbose" = '0' ]; then
+            git clone https://github.com/secretsquirrel/SigThief.git &> /dev/null
+        elif [ "$verbose" = '1' ]; then
+            git clone https://github.com/secretsquirrel/SigThief.git
+        else
+           :
+        fi
         ret="$?"
         success "Successfully installed SigThief."
         debug
@@ -103,7 +100,13 @@ sigThief() {
 meterssh() {
      echo -e $green"Installing: MeterSSH"$reset
     if [ ! -d "meterssh" ]; then
-        git clone https://github.com/trustedsec/meterssh.git
+        if [ "$verbose" = '0' ]; then
+            git clone https://github.com/trustedsec/meterssh.git &> /dev/null
+        elif [ "$verbose" = '1' ]; then
+            git clone https://github.com/trustedsec/meterssh.git
+        else
+            :
+        fi
         ret="$?"
         success "Successfully installed MeterSSH."
         debug
@@ -116,7 +119,13 @@ meterssh() {
 linEnum() {
     echo -e $green"Installing: LinEnum"$reset
     if [ ! -d "LinEnum" ]; then
-        git clone https://github.com/cheetz/LinEnum.git
+        if [ "$verbose" = '0' ]; then
+            git clone https://github.com/cheetz/LinEnum.git &> /dev/null
+        elif [ "$verbose" = '1' ]; then
+            git clone https://github.com/cheetz/LinEnum.git
+        else
+            :
+        fi
         ret="$?"
         success "Successfully installed LinEnum."
         debug
@@ -129,11 +138,20 @@ linEnum() {
 cme_bleeding_edge() {
 	echo -e $green"Installing: CME Bleeding-Edge"$reset
 	    if [ ! -d "CrackMapExec" ]; then
-            git clone https://github.com/byt3bl33d3r/CrackMapExec.git
-            apt-get install -y libssl-dev libffi-dev python-dev build-essential
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/byt3bl33d3r/CrackMapExec.git &> /dev/null
+                apt-get install -y libssl-dev libffi-dev python-dev build-essential &> /dev/null
+                (cd /opt/CrackMapExec && git submodule init && git submodule update --recursive) &> /dev/null
+                (cd /opt/CrackMapExec && python setup.py install) &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/byt3bl33d3r/CrackMapExec.git
+                apt-get install -y libssl-dev libffi-dev python-dev build-essential
+                (cd /opt/CrackMapExec && git submodule init && git submodule update --recursive)
+                (cd /opt/CrackMapExec && python setup.py install)
+            else
+                :
+            fi
             ret="$?"
-            (cd /opt/CrackMapExec && git submodule init && git submodule update --recursive)
-            (cd /opt/CrackMapExec && python setup.py install)
             success "Successfully installed CrackMapExec Bleeding Edge"
 	        debug
         else
@@ -508,6 +526,19 @@ probableWordlists(){
     sleep 1
 }
 
+veilFramework() {
+    echo -e $green"Installing: Veil-Framework"$reset
+    if [ ! -d "Veil" ]; then
+        git clone https://github.com/Veil-Framework/Veil.git
+        ret="$?"
+        success "Successfully installed Veil."
+        debug
+        (cd Veil/ && ./Veil.py --setup)
+    else
+        skipmsg "Found Veil in /opt. Skipping installation."
+    fi
+    sleep 1
+}
 
 #################### REDTEAM EVIL STUFF
 #
@@ -561,7 +592,18 @@ backdoorFactory() {
 #sleep 1
 
 banner() {
+    if [ "$verbose" = '0' ]; then
+        echo "SHIT IS NOT VERBOSE."
+    elif [ "$verbose" = '1' ]; then
+        echo "SHIT IS VERBOSE."
+    else
+        echo "ERROR?"
+    fi
     # mandatory banner lol.
+    #if [ "$verbose" = "1" ]; then
+    #    echo "its verbose fam"
+    #fi
+
     echo -e $green".##....##....###....##.......####"$reset
     echo -e $green".##...##....##.##...##........##."$reset
     echo -e $green".##..##....##...##..##........##."$reset
@@ -627,7 +669,7 @@ debug() {
 #
 #  Just all the setup parameters, variables and stuff.
 #
-
+verbose='0'
 debug_mode='0'
 cd /opt
 readonly reset="\e[0m"
@@ -635,17 +677,27 @@ readonly red="\e[31m"
 readonly green="\e[38;5;46m"
 readonly lightYellow="\e[93m"
 readonly lightCyan="\e[96m"
+optstring=':vbresh'
 
-while getopts ":bresh" opt; do
+while getopts "$optstring" opt; do
+    case $opt in
+        v)  verbose=1;;
+    esac
+done
+OPTIND=1
+while getopts "$optstring" opt; do
     case $opt in
         r)  redteam
+            finished
             exit
             ;;
         s)  start
+            finished
             exit
             ;;
         e)  start
             redteam
+            finished
             exit
             ;;
         b)  banner
@@ -655,6 +707,7 @@ while getopts ":bresh" opt; do
             exit
             ;;
        \?)  echo "Invalid option: -$OPTARG" >&2
+            usage
             exit 
             ;;
     esac
