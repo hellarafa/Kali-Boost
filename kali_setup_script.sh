@@ -330,7 +330,7 @@ masscan() {
                 git clone https://github.com/robertdavidgraham/masscan.git &> /dev/null
                 apt-get install -y git gcc make libpcap-dev &> /dev/null
                 (cd /opt/masscan && make -j && make install) &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/robertdavidgraham/masscan.git
                 apt-get install -y git gcc make libpcap-dev
                 (cd /opt/masscan && make -j && make install)
@@ -428,7 +428,7 @@ seclists() {
 	    if [ ! -d "SecLists" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/danielmiessler/SecLists.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
 	            git clone https://github.com/danielmiessler/SecLists.git
             else
                 :
@@ -447,7 +447,7 @@ wifite() {
 	    if [ ! -d "wifite" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/derv82/wifite.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/derv82/wifite.git
             else
                 :
@@ -466,7 +466,7 @@ wifite2() {
 	    if [ ! -d "wifite2" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.comn/derv82/wifite2.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/derv82/wifite2.git
             else
                 :
@@ -485,7 +485,7 @@ nishang() {
 	    if [ ! -d "./nishang/" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/samratashok/nishang.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/samratashok/nishang.git
             else
                 :
@@ -504,7 +504,7 @@ worawitms17() {
 	    if [ ! -d "MS17-010" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/worawit/MS17-010.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/worawit/MS17-010.git
             else
                 :
@@ -523,7 +523,7 @@ vulscan() {
 	    if [ ! -d "vulscan" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/scipag/vulscan.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/scipag/vulscan.git
             else 
                 :
@@ -543,7 +543,7 @@ vulners() {
 	    if [ ! -d "nmap-vulners" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/vulnersCom/nmap-vulners.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/vulnersCom/nmap-vulners.git
             else
                 :
@@ -563,7 +563,7 @@ credninja() {
 	    if [ ! -d "CredNinja" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/Raikia/CredNinja.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/Raikia/CredNinja.git
             else
                 :
@@ -582,7 +582,7 @@ elfStrings() {
 	    if [ ! -d "elf-strings" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/LloydLabs/elf-strings &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/LloydLabs/elf-strings
             else
                 :
@@ -601,7 +601,7 @@ dotdotslash() {
 	    if [ ! -d "dotdotslash" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/jcesarstef/dotdotslash.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/jcesarstef/dotdotslash.git
             else
                 :
@@ -620,7 +620,7 @@ burp_vulners() {
 	    if [ ! -d "burp-vulners-scanner" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/vulnersCom/burp-vulners-scanner.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/vulnersCom/burp-vulners-scanner.git
             else
                 :
@@ -640,7 +640,7 @@ whonow() {
 	    if [ ! -d "whonow" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/brannondorsey/whonow.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/brannondorsey/whonow.git
             else
                 :
@@ -659,7 +659,7 @@ wfuzz() {
 	    if [ ! -d "wfuzz" ]; then
 	        if [ "$verbose" = '0' ]; then
                 git clone https://github.com/xmendez/wfuzz.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/xmendez/wfuzz.git
             else
                 :
@@ -678,7 +678,7 @@ probableWordlists(){
         if [ ! -d "Probable-Wordlists" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/berzerk0/Probable-Wordlists.git &> /dev/null
-            elif [ "$verbose"= '1' ]; then
+            elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/berzerk0/Probable-Wordlists.git
             else
                 :
