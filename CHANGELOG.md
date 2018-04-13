@@ -1,7 +1,7 @@
 # Changelog
-All future changes from this point on will be documented in this file.
+All future changes from version 1.0.4 and on will be documented in this file.
 
-## [1.1.0] - 2018-04-10
+## [1.1.0] - 2018-04-12
 ### Added
 - Added comments like a legit programmer.
 - wfuzz from [@xmendez](https://github.com/xmendez/wfuzz)
@@ -12,9 +12,10 @@ All future changes from this point on will be documented in this file.
 - Veil-Framework from [@Veil-Framework](https://github.com/Veil-Framework/Veil)
 
 ### Changed
-- Functionalized the entire script so that every git installation is in its own function. I did this to help the user specify which packages won't be installed by simply commenting out a function call at the bottom of the script.
-- Fixed the Empire Instalation. It still didn't work.
-- Made everything 1337 colorful. 
+- Completely changed the logical operation of the script. First, I added everything into its own function. Second, I added arguments to help users decide what to install. Lastly, I added a call table that calls each function and in turn, installs each tool.
+- New version because of the huge amount of changes I made.
+- Fixed the Empire installation. It still didn't work.
+- Made everything 1337 colorful with a nice checkmark. 
 - Changed output messages.
 - Included a debug function as well as some internal functions to make the output look nicer.
 
