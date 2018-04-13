@@ -405,11 +405,11 @@ firefox_password_cracker2() {
 
 rtfm() {
 	echo -e $green"Installing: rtfm"$reset
-	    if [ ! -d "rtfm" ]; then
+        if [ ! -d "rtfm" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/leostat/rtfm.git &> /dev/null
             elif [ "$verbose" = '1' ]; then
-	            git clone https://github.com/leostat/rtfm.git
+                git clone https://github.com/leostat/rtfm.git
             else
                 :
             fi
