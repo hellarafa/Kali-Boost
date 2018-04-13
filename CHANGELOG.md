@@ -1,5 +1,5 @@
 # Changelog
-All future changes from version 1.0.4 and on will be documented in this file.
+All future changes from Version 1.0.4 and onward will be documented in this file.
 
 ## [1.1.0] - 2018-04-12
 ### Added
