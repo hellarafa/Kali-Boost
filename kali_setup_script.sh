@@ -72,7 +72,6 @@ finished() {
     echo -e $lightCyan"\nFinished installing all of the tools! Have a great day."$reset
 }
 
-
 redteam() {
     windowsHacks #1
     backdoorFactory #2
@@ -161,34 +160,47 @@ cme_bleeding_edge() {
 }
 
 empire() {
-	echo -e $green"Installing: Empire"$reset
 	    if [ -d "Empire" ]; then
             skipmsg "Found Empire in /opt. Skipping installation."
             read -p "Do you want to update instead (y/n)? " choice2
-            case "$choice2" in
-                [yY]|[yYeEsS] ) (cd /opt/Empire && git pull)
-                            ret="$?"
-                            success "Successfully updated Empire."
-                            debug
-                            ;;
-                [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
-                * ) skipmsg "Not updating Empire.";;
-            esac
+            if [ "$verbose" = '0' ]; then
+                case "$choice2" in
+                    [yY]|[yYeEsS] ) (cd /opt/Empire && git pull) &> /dev/null
+                        ret="$?"
+                        success "Successfully updated Empire."
+                        debug
+                        ;;
+                    [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
+                    * ) skipmsg "Not updating Empire.";;
+                esac
+            elif [ "$verbose" = '1' ]; then
+                case "$choice2" in
+                    [yY]|[yYeEsS] ) (cd /opt/Empire && git pull)
+                        ret="$?"
+                        success "Successfully updated Empire."
+                        debug
+                        ;;
+                    [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
+                    * ) skipmsg "Not updating Empire.";;
+                esac
+            else
+                :
+            fi
 	    fi
 	    if [ ! -d "Empire" ]; then
-            git clone https://github.com/EmpireProject/Empire.git
+            echo -e $green"Installing: Empire"$reset
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/EmpireProject/Empire.git &> /dev/null
+                (cd Empire && ./setup/install.sh) &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/EmpireProject/Empire.git
+                (cd Empire && ./setup/install.sh)
+            else
+                :
+            fi
             ret="$?"
+            success "Successfully installed Empire."
             debug
-            read -p "Empire requires extra installation steps. Do you want to continue with the Empire install? (y/n)? " choice1
-            case "$choice1" in
-                [yY]|[yYeEsS] ) (cd Empire && ./setup/install.sh)
-                            ret="$?"
-                            success "Successfully installed Empire."
-                            debug
-                            ;;
-                [nN]|[nNoO] ) skipmsg "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
-                * ) skipmsg "Skipping installation. Manually run install.sh in the EmpireProject folder to install.";;
-            esac
 	    fi
 	sleep 1
 }
@@ -196,7 +208,13 @@ empire() {
 firefox_password_cracker() {
 	echo -e $green"Installing: ffpasscracker"$reset
 	    if [ ! -d "ffpasscracker" ]; then
-            git clone https://github.com/pradeep1288/ffpasscracker.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/pradeep1288/ffpasscracker.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/pradeep1288/ffpasscracker.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed ffpasscracker."
             debug
@@ -209,8 +227,15 @@ firefox_password_cracker() {
 eyewitness() {
 	echo -e $green"Installing: EyeWitness"$reset
 	    if [ ! -d "EyeWitness" ]; then
-            git clone https://github.com/ChrisTruncer/EyeWitness.git
-            (cd /opt/EyeWitness/setup/ && ./setup.sh )
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/ChrisTruncer/EyeWitness.git &> /dev/null
+                (cd /opt/EyeWitness/setup/ && ./setup.sh) &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/ChrisTruncer/EyeWitness.git
+                (cd /opt/EyeWitness/setup/ && ./setup.sh)
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed EyeWitness."
             debug
@@ -223,8 +248,15 @@ eyewitness() {
 impacket_tools() {
 	echo -e $green"Installing: Impacket"$reset
 	    if [ ! -d "impacket" ]; then
-            git clone https://github.com/CoreSecurity/impacket.git
-            (cd impacket && python setup.py install)
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/CoreSecurity/impacket.git &> /dev/null
+                (cd impacket && python setup.py install) &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/CoreSecurity/impacket.git
+                (cd impacket && python setup.py install)
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed Impacket."
             debug
@@ -237,8 +269,14 @@ impacket_tools() {
 mimikittenz() {
 	echo -e $green"Installing: mimikittenz"$reset
 	    if [ ! -d "mimikittenz" ]; then
-		    git clone https://github.com/putterpanda/mimikittenz.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/putterpanda/mimikittenz.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+		        git clone https://github.com/putterpanda/mimikittenz.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed mimikittenz."
             debug
         else
@@ -250,8 +288,14 @@ mimikittenz() {
 mimipenguin() {
 	echo -e $green"Installing: mimipenguin"$reset
 	    if [ ! -d "mimipenguin" ]; then
-		    git clone https://github.com/huntergregal/mimipenguin.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+		        git clone https://github.com/huntergregal/mimipenguin.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/huntergregal/mimipenguin.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed mimipenguin."
             debug
         else
@@ -263,7 +307,13 @@ mimipenguin() {
 noSQLMap() {
 	echo -e $green"Installing: NoSQLMap"$reset
 	    if [ ! -d "NoSQLMap" ]; then
-		    git clone https://github.com/codingo/NoSQLMap.git
+		    if [ "$verbose" = '0' ]; then
+                git clone https://github.com/codingo/NoSQLMap.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/codingo/NoSQLMap.git
+            else
+                :
+            fi
 	        ret="$?"
             success "Successfully installed NoSQLMap."
             debug
@@ -276,10 +326,18 @@ noSQLMap() {
 masscan() {
 	echo -e $green"Installing: Masscan"$reset
 	    if [ ! -d "masscan" ]; then
-            git clone https://github.com/robertdavidgraham/masscan.git
-            apt-get install -y git gcc make libpcap-dev
-            (cd /opt/masscan && make -j && make install)
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/robertdavidgraham/masscan.git &> /dev/null
+                apt-get install -y git gcc make libpcap-dev &> /dev/null
+                (cd /opt/masscan && make -j && make install) &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/robertdavidgraham/masscan.git
+                apt-get install -y git gcc make libpcap-dev
+                (cd /opt/masscan && make -j && make install)
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed Masscan."
             debug
         else
@@ -291,7 +349,13 @@ masscan() {
 powershellPopup() {
 	echo -e $green"Installing: PowerShell_Popup"$reset
 	    if [ ! -d "PowerShell_Popup" ]; then
-	        git clone https://github.com/cheetz/PowerShell_Popup.git
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/cheetz/PowerShell_Popup.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/cheetz/PowerShell_Popup.git
+            else
+                :
+            fi
 	        ret="$?"
             success "Successfully installed PowerShell_Popup."
             debug
@@ -304,8 +368,14 @@ powershellPopup() {
 powersploit() {
 	echo -e $green"Installing: PowerSploit"$reset
 	    if [ ! -d "PowerSploit" ]; then
-	        git clone https://github.com/PowerShellMafia/PowerSploit.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+	            git clone https://github.com/PowerShellMafia/PowerSploit.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/PowerShellMafia/PowerSploit.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed PowerSploit."
             debug
         else
@@ -317,7 +387,13 @@ powersploit() {
 firefox_password_cracker2() {
 	echo -e $green"Installing: python-ffpassdecrypt"$reset
 	    if [ ! -d "python-ffpassdecrypt" ]; then
-            git clone https://github.com/nyov/python-ffpassdecrypt.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/nyov/python-ffpassdecrypt.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/nyov/python-ffpassdecrypt.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed python-ffpassdecrypt."
             debug
@@ -330,7 +406,13 @@ firefox_password_cracker2() {
 rtfm() {
 	echo -e $green"Installing: rtfm"$reset
 	    if [ ! -d "rtfm" ]; then
-	        git clone https://github.com/leostat/rtfm.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/leostat/rtfm.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+	            git clone https://github.com/leostat/rtfm.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed rtfm."
             debug
@@ -344,8 +426,14 @@ rtfm() {
 seclists() {
 	echo -e $green"Installing: SecLists"$reset
 	    if [ ! -d "SecLists" ]; then
-	        git clone https://github.com/danielmiessler/SecLists.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/danielmiessler/SecLists.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+	            git clone https://github.com/danielmiessler/SecLists.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed SecLists."
             debug
         else
@@ -357,8 +445,14 @@ seclists() {
 wifite() {
 	echo -e $green"Installing: wifite"$reset
 	    if [ ! -d "wifite" ]; then
-	        git clone https://github.com/derv82/wifite.git
-	        ret="$?"
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/derv82/wifite.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/derv82/wifite.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed wifite."
             debug
         else
@@ -370,8 +464,14 @@ wifite() {
 wifite2() {
 	echo -e $green"Installing: wifite2"$reset
 	    if [ ! -d "wifite2" ]; then
-	        git clone https://github.com/derv82/wifite2.git
-	        ret="$?"
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.comn/derv82/wifite2.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/derv82/wifite2.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed wifite2."
             debug
         else
@@ -383,8 +483,14 @@ wifite2() {
 nishang() {
 	echo -e $green"Installing: nishang"$reset
 	    if [ ! -d "./nishang/" ]; then
-	        git clone https://github.com/samratashok/nishang.git 
-	        ret="$?"
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/samratashok/nishang.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/samratashok/nishang.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed nishang."
             debug
         else
@@ -396,8 +502,14 @@ nishang() {
 worawitms17() {
 	echo -e $green"Installing: Worawit's MS17-010"$reset
 	    if [ ! -d "MS17-010" ]; then
-            git clone https://github.com/worawit/MS17-010.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/worawit/MS17-010.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/worawit/MS17-010.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed Worawit's MS17-010."
             debug
         else
@@ -409,8 +521,14 @@ worawitms17() {
 vulscan() {
 	echo -e $green"Installing: Vulscan"$reset
 	    if [ ! -d "vulscan" ]; then
-            git clone https://github.com/scipag/vulscan.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/scipag/vulscan.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/scipag/vulscan.git
+            else 
+                :
+            fi
+            ret="$?"
             cp -r vulscan/ /usr/share/nmap/scripts/
 	        success "Successfully installed Vulscan. Find it in your nmap scripts."
             debug
@@ -423,7 +541,13 @@ vulscan() {
 vulners() {
 	echo -e $green"Installing: Vulners"$reset
 	    if [ ! -d "nmap-vulners" ]; then
-            git clone https://github.com/vulnersCom/nmap-vulners.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/vulnersCom/nmap-vulners.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/vulnersCom/nmap-vulners.git
+            else
+                :
+            fi
             ret="$?"
 	        cp nmap-vulners/vulners.nse /usr/share/nmap/scripts/
 	        success "Successfully installed Vulners. Find it in your nmap scripts."
@@ -437,8 +561,14 @@ vulners() {
 credninja() {
 	echo -e $green"Installing: CredNinja"$reset
 	    if [ ! -d "CredNinja" ]; then
-            git clone https://github.com/Raikia/CredNinja.git
-	        ret="$?"
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/Raikia/CredNinja.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/Raikia/CredNinja.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed CredNinja."
             debug
         else
@@ -450,7 +580,13 @@ credninja() {
 elfStrings() {
 	echo -e $green"Installing: ELF-Strings"$reset
 	    if [ ! -d "elf-strings" ]; then
-	        git clone https://github.com/LloydLabs/elf-strings
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/LloydLabs/elf-strings &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/LloydLabs/elf-strings
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed ELF-Strings."
             debug
@@ -463,8 +599,14 @@ elfStrings() {
 dotdotslash() {
 	echo -e $green"Installing: dotdotslash"$reset
 	    if [ ! -d "dotdotslash" ]; then
-	        git clone https://github.com/jcesarstef/dotdotslash.git
-	        ret="$?"
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/jcesarstef/dotdotslash.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/jcesarstef/dotdotslash.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed dotdotslash."
             debug
         else
@@ -476,7 +618,13 @@ dotdotslash() {
 burp_vulners() {
 	echo -e $green"Installing: burp-vulners-scanner"$reset
 	    if [ ! -d "burp-vulners-scanner" ]; then
-	        git clone https://github.com/vulnersCom/burp-vulners-scanner.git
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/vulnersCom/burp-vulners-scanner.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/vulnersCom/burp-vulners-scanner.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully downloaded burp-vulners-scanner."
 	        echo -e $lightYellow"Don't forget to manually install this module in Burp."$reset
@@ -490,8 +638,14 @@ burp_vulners() {
 whonow() {
 	echo -e $green"Installing: whonow"$reset
 	    if [ ! -d "whonow" ]; then
-	        git clone https://github.com/brannondorsey/whonow.git
-	        ret="$?"
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/brannondorsey/whonow.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/brannondorsey/whonow.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed whonow."
             debug
         else
@@ -503,8 +657,14 @@ whonow() {
 wfuzz() {
 	echo -e $green"Installing: wfuzz"$reset
 	    if [ ! -d "wfuzz" ]; then
-	        git clone https://github.com/xmendez/wfuzz.git
-	        ret="$?"
+	        if [ "$verbose" = '0' ]; then
+                git clone https://github.com/xmendez/wfuzz.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/xmendez/wfuzz.git
+            else
+                :
+            fi
+            ret="$?"
             success "Successfully installed wfuzz."
             debug
         else
@@ -516,7 +676,13 @@ wfuzz() {
 probableWordlists(){
     echo -e $green"Installing: Probable-Wordlists"$reset
         if [ ! -d "Probable-Wordlists" ]; then
-            git clone https://github.com/berzerk0/Probable-Wordlists.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/berzerk0/Probable-Wordlists.git &> /dev/null
+            elif [ "$verbose"= '1' ]; then
+                git clone https://github.com/berzerk0/Probable-Wordlists.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed Probable-Wordlists."
             debug
@@ -528,15 +694,22 @@ probableWordlists(){
 
 veilFramework() {
     echo -e $green"Installing: Veil-Framework"$reset
-    if [ ! -d "Veil" ]; then
-        git clone https://github.com/Veil-Framework/Veil.git
-        ret="$?"
-        success "Successfully installed Veil."
+        read -p "Veil takes a couple minutes to install. Do you want to continue with the install (y/n)? " choiceVeil
+                case "$choiceVeil" in
+                    [yY]|[yYeEsS] )
+                                if [ "$verbose" = '0' ]; then
+                                    echo "The installation process is a bit noisy. You're gonna see alot of stuff on the screen."
+                                    sleep 2
+                                fi
+                                apt-get -y -qq install veil
+                                veil --setup
+                                ret="$?"
+                                success "Successfully installed the Veil-Framework."
+                                ;;
+                      [nN]|[nNoO] ) skipmsg "Skipping the Veil installation.";;
+                                * ) skipmsg "Skipping the Veil installation.";;
+                esac
         debug
-        (cd Veil/ && ./Veil.py --setup)
-    else
-        skipmsg "Found Veil in /opt. Skipping installation."
-    fi
     sleep 1
 }
 
@@ -551,7 +724,13 @@ veilFramework() {
 windowsHacks() {
     echo -e $green"Installing: Windows-Hacks"$reset
         if [ ! -d "Windows-Hacks" ]; then
-            git clone https://github.com/LazoCoder/Windows-Hacks.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/LazoCoder/Windows-Hacks.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/LazoCoder/Windows-Hacks.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed Windows-Hacks."
             debug
@@ -564,7 +743,13 @@ windowsHacks() {
 backdoorFactory() {
     echo -e $green"Installing : Backdoor-Factory"$reset
         if [ ! -d "the-backdoor-factory" ]; then
-            git clone https://github.com/secretsquirrel/the-backdoor-factory.git
+            if [ "$verbose" = '0' ]; then
+                git clone https://github.com/secretsquirrel/the-backdoor-factory.git &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                git clone https://github.com/secretsquirrel/the-backdoor-factory.git
+            else
+                :
+            fi
             ret="$?"
             success "Successfully installed The-Backdoor-Factory."
             debug
@@ -582,7 +767,13 @@ backdoorFactory() {
 
 #echo -e $green"Installing: ___"$reset
 #    if [ ! -d "___" ]; then
-#        git clone https://github.com/___.git
+#        if [ "$verbose" = '0' ]; then
+#           git clone https://github.com/___.git &> /dev/null
+#        elif [ "$verbose" = '1' ]; then
+#           git clone https://github.com/___.git
+#        else
+#           :
+#        fi
 #        ret="$?"
 #        success "DANK AF FAM"
 #        debug
@@ -592,17 +783,7 @@ backdoorFactory() {
 #sleep 1
 
 banner() {
-    if [ "$verbose" = '0' ]; then
-        echo "SHIT IS NOT VERBOSE."
-    elif [ "$verbose" = '1' ]; then
-        echo "SHIT IS VERBOSE."
-    else
-        echo "ERROR?"
-    fi
     # mandatory banner lol.
-    #if [ "$verbose" = "1" ]; then
-    #    echo "its verbose fam"
-    #fi
 
     echo -e $green".##....##....###....##.......####"$reset
     echo -e $green".##...##....##.##...##........##."$reset
