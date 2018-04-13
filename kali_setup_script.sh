@@ -135,8 +135,8 @@ linEnum() {
 }
 
 cme_bleeding_edge() {
-	echo -e $green"Installing: CME Bleeding-Edge"$reset
-	    if [ ! -d "CrackMapExec" ]; then
+    echo -e $green"Installing: CME Bleeding-Edge"$reset
+        if [ ! -d "CrackMapExec" ]; then
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/byt3bl33d3r/CrackMapExec.git &> /dev/null
                 apt-get install -y libssl-dev libffi-dev python-dev build-essential &> /dev/null
@@ -152,46 +152,46 @@ cme_bleeding_edge() {
             fi
             ret="$?"
             success "Successfully installed CrackMapExec Bleeding Edge"
-	        debug
+            debug
         else
             skipmsg "Found CrackMapExec Bleeding-Edge in /opt. Skipping installation."
-	    fi
-	sleep 1
+        fi
+    sleep 1
 }
 
 empire() {
-	    if [ -d "Empire" ]; then
-            skipmsg "Found Empire in /opt. Skipping installation."
-            read -p "Do you want to update instead (y/n)? " choice2
-            if [ "$verbose" = '0' ]; then
-                case "$choice2" in
-                    [yY]|[yYeEsS] ) (cd /opt/Empire && git pull) &> /dev/null
-                        ret="$?"
-                        success "Successfully updated Empire."
-                        debug
-                        ;;
-                    [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
-                    * ) skipmsg "Not updating Empire.";;
-                esac
-            elif [ "$verbose" = '1' ]; then
-                case "$choice2" in
-                    [yY]|[yYeEsS] ) (cd /opt/Empire && git pull)
-                        ret="$?"
-                        success "Successfully updated Empire."
-                        debug
-                        ;;
-                    [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
-                    * ) skipmsg "Not updating Empire.";;
-                esac
-            else
-                :
-            fi
-	    fi
-	    if [ ! -d "Empire" ]; then
+    if [ -d "Empire" ]; then
+        skipmsg "Found Empire in /opt. Skipping installation."
+        read -p "Do you want to update instead (y/n)? " choice2
+        if [ "$verbose" = '0' ]; then
+            case "$choice2" in
+                [yY]|[yYeEsS] ) (cd /opt/Empire && git pull) &> /dev/null
+                    ret="$?"
+                    success "Successfully updated Empire."
+                    debug
+                    ;;
+                [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
+                * ) skipmsg "Not updating Empire.";;
+            esac
+        elif [ "$verbose" = '1' ]; then
+            case "$choice2" in
+                [yY]|[yYeEsS] ) (cd /opt/Empire && git pull)
+                    ret="$?"
+                    success "Successfully updated Empire."
+                    debug
+                    ;;
+                [nN]|[nNoO] ) skipmsg "Not updating Empire.";;
+                * ) skipmsg "Not updating Empire.";;
+            esac
+        else
+            :
+        fi
+    fi
+        if [ ! -d "Empire" ]; then
             echo -e $green"Installing: Empire"$reset
             if [ "$verbose" = '0' ]; then
                 git clone https://github.com/EmpireProject/Empire.git &> /dev/null
-                (cd Empire && ./setup/install.sh) &> /dev/null
+                (cd Empire && echo '\r' | ./setup/install.sh) &> /dev/null
             elif [ "$verbose" = '1' ]; then
                 git clone https://github.com/EmpireProject/Empire.git
                 (cd Empire && ./setup/install.sh)
@@ -201,8 +201,8 @@ empire() {
             ret="$?"
             success "Successfully installed Empire."
             debug
-	    fi
-	sleep 1
+        fi
+    sleep 1
 }
 
 firefox_password_cracker() {
