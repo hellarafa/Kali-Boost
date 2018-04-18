@@ -1,6 +1,7 @@
 #!/bin/bash
 #version
-v="1.1.0_DEV"
+v="1.1.1"
+d="04-18-18"
 
 #################### ABOUT
 #
@@ -17,8 +18,10 @@ usage() {
     echo "     -s     Start the installation."
     echo "     -r     Install ONLY the red team scripts."
     echo "     -e     Install EVERYTHING."
+    echo "     -u     Update Kali."
     echo "     -v     Be verbose."
     echo "     -b     Show the banner."
+    echo "     -l     List all the tools that are part of this script."
     echo "     -h     Show this help screen."
     echo -e "\n#########################################################"
 }
@@ -30,7 +33,9 @@ usage() {
 #  tools are installed. 
 
 start() {
+#MENU
     banner
+    toolsListA
     cme_bleeding_edge #1
     empire #2
     firefox_password_cracker #3
@@ -61,18 +66,89 @@ start() {
     linEnum #28
     meterssh #29
     sigThief #30
-    veilFramework #31
+    dirsearch
+
 
     #ADD LATER
     #mimikatz trunk
     #https://github.com/gentilkiwi/mimikatz/releases/latest
+    veilFramework
 }
 
 finished() {
     echo -e $lightCyan"\nFinished installing all of the tools! Have a great day."$reset
 }
 
+toolsListA() {
+    echo -e $green"#########################################################\n"$reset
+    echo -e $lightCyan"List of Tools that will be installed:"$reset
+    echo "
+    1 | CrackMapExec - Bleeding-Edge
+    2 | Empire 
+    3 | Firefox Password Cracker
+    4 | EyeWitness
+    5 | Impacket
+    6 | mimikittenz 
+    7 | mimipenguin
+    8 | NoSQLMap
+    9 | Masscan
+    10 | PowerShell Popup
+    11 | PowerSploit
+    12 | Firefox Password Cracker 2
+    13 | Red Team Field Manual
+    14 | SecLists
+    15 | Wifite
+    16 | Wifite2
+    17 | Nishang
+    18 | Worawit's MS17-010
+    19 | Vulscan
+    20 | Vulners
+    21 | CredNinja
+    22 | ELF-Strings
+    23 | dotdotslash
+    24 | Vulners for Burp Suite
+    25 | whonow DNS
+    26 | wfuzz
+    27 | Probable Wordlists
+    28 | LinEnum - Linux Enumeration
+    29 | MeterSSH
+    30 | SigThief
+    31 | dirsearch 
+    "
+    echo -e $green"#########################################################\n"$reset
+}
+
+toolsListB() {
+    echo -e $green"#########################################################\n"$reset
+    echo -e $lightCyan"Red Team Tools that will be installed:\n"$reset
+    echo -e $lightYellow"NOTE: These tools modify, alter, edit, delete, or break files, and might cause irreversible damage. ONLY use/install these if you know what you are doing. These tools are meant to be used in RED TEAM engagements where persistance and/or trolling is part of the engagement scope."$reset
+    echo "
+    1 | Windows-Hacks
+    2 | Backdoor-Factory
+    "
+    echo -e $green"#########################################################\n"$reset
+}
+
+updateKali() {
+    echo -e $green"#########################################################\n"$reset
+        echo -e "Updating Kali."
+        if [ "$verbose" = '0' ]; then
+            apt-get -qq update && apt-get -qq dist-upgrade && apt-get -qq autoremove && apt-get -qq autoclean
+        elif [ "$verbose" = '1' ]; then
+            apt-get update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get -y autoclean
+        else
+            :
+        fi
+        ret="$?"
+        echo ""
+        success "Successfully updated Kali."
+        debug
+    echo -e $green"\n#########################################################\n"$reset
+    sleep 1
+}
+
 redteam() {
+    toolsListB
     windowsHacks #1
     backdoorFactory #2
 }
@@ -692,13 +768,69 @@ probableWordlists(){
     sleep 1
 }
 
+dirsearch() {
+echo -e $green"Installing: dirsearch"$reset
+    if [ ! -d "dirsearch" ]; then
+        if [ "$verbose" = '0' ]; then
+           git clone https://github.com/maurosoria/dirsearch.git &> /dev/null
+        elif [ "$verbose" = '1' ]; then
+           git clone https://github.com/maurosoria/dirsearch.git
+        else
+           :
+        fi
+        ret="$?"
+        success "Successfully installed dirsearch."
+        debug
+    else
+        skipmsg "Found dirsearch in /opt. Skipping installation."
+    fi
+sleep 1
+}
+
+#echo -e $green"Installing: ___"$reset
+#    if [ ! -d "___" ]; then
+#        if [ "$verbose" = '0' ]; then
+#           git clone https://github.com/___.git &> /dev/null
+#        elif [ "$verbose" = '1' ]; then
+#           git clone https://github.com/___.git
+#        else
+#           :
+#        fi
+#        ret="$?"
+#        success "DANK AF FAM"
+#        debug
+#    else
+#        skipmsg "Found ___ in /opt. Skipping installation."
+#    fi
+#sleep 1
+
+
+#echo -e $green"Installing: ___"$reset
+#    if [ ! -d "___" ]; then
+#        if [ "$verbose" = '0' ]; then
+#           git clone https://github.com/___.git &> /dev/null
+#        elif [ "$verbose" = '1' ]; then
+#           git clone https://github.com/___.git
+#        else
+#           :
+#        fi
+#        ret="$?"
+#        success "DANK AF FAM"
+#        debug
+#    else
+#        skipmsg "Found ___ in /opt. Skipping installation."
+#    fi
+#sleep 1
+
+
+
 veilFramework() {
     echo -e $green"Installing: Veil-Framework"$reset
         read -p "Veil takes a couple minutes to install. Do you want to continue with the install (y/n)? " choiceVeil
                 case "$choiceVeil" in
                     [yY]|[yYeEsS] )
                                 if [ "$verbose" = '0' ]; then
-                                    echo "The installation process is a bit noisy. You're gonna see alot of stuff on the screen."
+                                    echo -e $lightYellow"The installation process is a bit noisy. You're gonna see a lot of stuff on the screen."$reset
                                     sleep 2
                                 fi
                                 apt-get -y -qq install veil
@@ -806,11 +938,11 @@ banner() {
     echo -e $green".......##.##.......##...##....##..##...........##..."$reset
     echo -e $green".##....##.##....##.##....##...##..##...........##..."$reset
     echo -e $green"..######...######..##.....##.####.##...........##..."$reset
-    echo -e "=============================="
-    echo -e "===$lightCyan Version:$reset$lightYellow $v         $reset==="
-    echo -e "===$lightCyan Last Updated:$reset$lightYellow 04-12-18 $reset==="
-    echo -e "===$lightCyan Made by @hellarafa <3  $reset==="
-    echo -e "=============================="
+    echo -e "================================="
+    echo -e $lightCyan" Version:$reset$lightYellow $v $reset"
+    echo -e $lightCyan" Last Updated:$reset$lightYellow $d $reset"
+    echo -e $lightCyan" Made by @hellarafa <3 $reset"
+    echo -e "================================="
     echo ""
 }
 
@@ -858,7 +990,7 @@ readonly red="\e[31m"
 readonly green="\e[38;5;46m"
 readonly lightYellow="\e[93m"
 readonly lightCyan="\e[96m"
-optstring=':vbresh'
+optstring=':vbreshul'
 
 while getopts "$optstring" opt; do
     case $opt in
@@ -879,6 +1011,14 @@ while getopts "$optstring" opt; do
         e)  start
             redteam
             finished
+            exit
+            ;;
+        l)  toolsListA
+            toolsListB
+            exit
+            ;;
+        u)  banner
+            updateKali
             exit
             ;;
         b)  banner
