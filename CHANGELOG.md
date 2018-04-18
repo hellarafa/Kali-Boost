@@ -1,11 +1,22 @@
 # Changelog
 All future changes from Version 1.0.4 and onward will be documented in this file.
 
+## [1.1.1] - 2018-04-12
+### Added
+- Verbosity option. Had to rewrite some of the code but it works. Default is silent or no verbose output unless user adds verbose flag with -v at runtime.
+- Function that lists all the tools that are going to be installed. 
+- Update function. Literally just updates Kali for you. Invoke with -u.
+
+#### Tools
+- dirsearch from [@maurosoria](https://github.com/maurosoria/dirsearch)
+-
+
 ## [1.1.0] - 2018-04-12
 ### Added
-- The option for Verbosity.
 - Added comments like a legit programmer.
+#### Tools
 - wfuzz from [@xmendez](https://github.com/xmendez/wfuzz)
+- Probable-Wordlists from [@berzerk0](https://github.com/berzerk0/Probable-Wordlists)
 - LinEnum from [@cheetz](https://github.com/cheetz/LinEnum)
 - MeterSSH from [@trustedsec](https://github.com/trustedsec/meterssh)
 - The-Backdoor-Factory from [@secretsquirrel](https://github.com/secretsquirrel/the-backdoor-factory)
@@ -23,6 +34,7 @@ All future changes from Version 1.0.4 and onward will be documented in this file
 ## [1.0.4] - 2018-04-02
 ### Added
 - This changelog
+#### Tools
 - Whonow DNS Server from [@brannondorsey](https://github.com/brannondorsey)
 - Burp vulners plugin from [@vulnersCom](https://github.com/vulnersCom)
 - dotdotslash from [@jcesarstef](https://github.com/jcesarstef)
