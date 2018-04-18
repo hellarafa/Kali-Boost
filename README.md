@@ -13,14 +13,19 @@ cd Kali-Setup-Script && chmod +x kali-setup-script.sh
 ### Usage:
 ```
 #########################################################
+
 Usage: kali-setup-script.sh [-args]
-OPTIONS:
-    -s     Start the installation
-    -r     Install ONLY the red team scripts
+
+    OPTIONS:
+    -s     Start the installation.
+    -r     Install ONLY the red team stuff.
     -e     Install EVERYTHING.
-    -b     Show the banner
-    -h     Show this help screen
+    -u     Update Kali.
+    -v     Be verbose.
+    -l     List all the tools that are part of this script.
+    -b     Show the banner.
+    -h     Show this help screen.
+
 #########################################################
 ```
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/hellarafa/Kali-Setup-Script/issues) | [![Hits](http://hits.dwyl.com/{hellarafa}/{Kali-Setup-Script}.svg)](http://hits.dwyl.com/{hellarafa}/{Kali-Setup-Script})
 
