@@ -1,16 +1,17 @@
 # Changelog
 All future changes from Version 1.0.4 and onward will be documented in this file.
 
-## [1.1.1] - 2018-04-12
+## [1.1.1] - 2018-04-18
 ### Added
-- Verbosity option. Had to rewrite some of the code but it works. Default is silent or no verbose output unless user adds verbose flag with -v at runtime.
-- Function that lists all the tools that are going to be installed. 
+- Verbosity option. Had to rewrite some of the code but it works. Default is silent or no verbose output unless user invokes with -v.
+- Function that lists all the tools that are going to be installed. Invoke with -l. Thats lowercase L as in lollipop or loser or legit.
 - Update function. Literally just updates Kali for you. Invoke with -u.
 
 #### Tools
 - dirsearch from [@maurosoria](https://github.com/maurosoria/dirsearch)
 -
 
+---
 ## [1.1.0] - 2018-04-12
 ### Added
 - Added comments like a legit programmer.
@@ -31,6 +32,7 @@ All future changes from Version 1.0.4 and onward will be documented in this file
 - Changed output messages.
 - Included a debug function as well as some internal functions to make the output look nicer.
 
+---
 ## [1.0.4] - 2018-04-02
 ### Added
 - This changelog
