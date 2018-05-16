@@ -1,6 +1,10 @@
 # Changelog
 All future changes from Version 1.0.4 and onward will be documented in this file.
 
+## [1.1.2] - 2018-05-16
+### Changed
+- Renamed tool and repo to Kali-Boost. Such a better name.
+
 ## [1.1.1] - 2018-04-18
 ### Added
 - Verbosity option. Had to rewrite some of the code but it works. Default is silent or no verbose output unless user invokes with -v.
