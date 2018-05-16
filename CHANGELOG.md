@@ -3,7 +3,8 @@ All future changes from Version 1.0.4 and onward will be documented in this file
 
 ## [1.1.2] - 2018-05-16
 ### Changed
-- Renamed tool and repo to Kali-Boost. Such a better name.
+- Big change!! Renamed tool and repo from Kali-Setup-Script to Kali-Boost. Such a better name.
+- Moved everything to a new repo. Just for the cleanliness.
 
 ## [1.1.1] - 2018-04-18
 ### Added
