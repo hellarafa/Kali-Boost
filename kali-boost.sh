@@ -66,8 +66,8 @@ start() {
     linEnum #28
     meterssh #29
     sigThief #30
-    dirsearch
-
+    dirsearch #31
+	psgetsystem #32
 
     #ADD LATER
     #mimikatz trunk
@@ -787,22 +787,24 @@ echo -e $green"Installing: dirsearch"$reset
 sleep 1
 }
 
-#echo -e $green"Installing: ___"$reset
-#    if [ ! -d "___" ]; then
-#        if [ "$verbose" = '0' ]; then
-#           git clone https://github.com/___.git &> /dev/null
-#        elif [ "$verbose" = '1' ]; then
-#           git clone https://github.com/___.git
-#        else
-#           :
-#        fi
-#        ret="$?"
-#        success "DANK AF FAM"
-#        debug
-#    else
-#        skipmsg "Found ___ in /opt. Skipping installation."
-#    fi
-#sleep 1
+psgetsystem() {
+    echo -e $green"Installing: psgetsystem"$reset
+    if [ ! -d "psgetsystem" ]; then
+        if [ "$verbose" = '0' ]; then
+			git clone https://github.com/decoder-it/psgetsystem.git &> /dev/null
+        elif [ "$verbose" = '1' ]; then
+			git clone https://github.com/decoder-it/psgetsystem.git
+        else
+           :
+        fi
+        ret="$?"
+        success "Successfully installed psgetsystem."
+        debug
+    else
+        skipmsg "Found psgetsystem in /opt. Skipping installation."
+    fi
+sleep 1
+}
 
 veilFramework() {
     echo -e $green"Installing: Veil-Framework"$reset
