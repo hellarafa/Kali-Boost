@@ -9,6 +9,11 @@ wget https://raw.githubusercontent.com/hellarafa/Kali-Boost/master/kali-boost.sh
 chmod +x kali-boost.sh
 ./kali-boost.sh -s
 ```
+######One-liner, cause you know, we're all lazy...
+```bash
+curl -s https://raw.githubusercontent.com/hellarafa/Kali-Boost/master/kali-boost.sh | bash /dev/stdin -s
+```
+
 
 ### Usage:
 ```
