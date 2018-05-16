@@ -5,8 +5,8 @@ Installs popular pentesting tools in the /opt folder. Just run the script and wa
 
 ### Installation:
 ```bash
-git clone https://github.com/hellarafa/Kali-Setup-Script.git
-cd Kali-Setup-Script && chmod +x kali-setup-script.sh
+wget https://raw.githubusercontent.com/hellarafa/Kali-Boost/master/kali-boost.sh
+chmod +x kali-boost.sh
 ./kali-boost.sh -s
 ```
 
