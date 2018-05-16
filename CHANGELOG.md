@@ -2,6 +2,10 @@
 All future changes from Version 1.0.4 and onward will be documented in this file.
 
 ## [1.1.2] - 2018-05-16
+### Added
+#### Tools
+- psgetsystem from [@decoder-it](https://github.com/decoder-it/psgetsystem)
+
 ### Changed
 - Big change!! Renamed tool and repo from Kali-Setup-Script to Kali-Boost. Such a better name.
 - Moved everything to a new repo. Just for the cleanliness.
