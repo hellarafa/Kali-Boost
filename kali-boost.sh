@@ -68,6 +68,7 @@ start() {
     sigThief #30
     dirsearch #31
 	psgetsystem #32
+	gobuster
 
     #ADD LATER
     #mimikatz trunk
@@ -804,6 +805,44 @@ psgetsystem() {
         skipmsg "Found psgetsystem in /opt. Skipping installation."
     fi
 sleep 1
+}
+
+gobuster() {
+	echo -e $green"Installing: Gobuster"$reset
+	    if [ ! -e /usr/bin/gobuster ]; then
+            if [ "$verbose" = '0' ]; then
+                apt-get install -qq gobuster &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                apt-get install -y gobuster
+            else
+                :
+            fi
+            ret="$?"
+            success "Successfully installed Gobuster."
+            debug
+        else
+            skipmsg "Found Gobuster in /usr/bin. Skipping installation."
+	    fi
+	sleep 1
+}
+
+gdebi() {
+	echo -e $green"Installing: gdebi"$reset
+	    if [ ! -e /usr/bin/gdebi ]; then
+            if [ "$verbose" = '0' ]; then
+                apt-get install -qq gdebi &> /dev/null
+            elif [ "$verbose" = '1' ]; then
+                apt-get install -y gdebi
+            else
+                :
+            fi
+            ret="$?"
+            success "Successfully installed gdebi."
+            debug
+        else
+            skipmsg "Found gdebi in /usr/bin. Skipping installation."
+	    fi
+	sleep 1
 }
 
 veilFramework() {
