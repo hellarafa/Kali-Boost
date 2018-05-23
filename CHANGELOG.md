@@ -1,10 +1,12 @@
 # Changelog
 All future changes from Version 1.0.4 and onward will be documented in this file.
 
-## [1.1.2] - 2018-05-16
+## [1.1.2] - 2018-05-23
 ### Added
 #### Tools
 - psgetsystem from [@decoder-it](https://github.com/decoder-it/psgetsystem)
+- gdebi from [Michael Vogt](https://launchpad.net/gdebi)
+- gobuster from [@OJ](https://github.com/OJ/gobuster)
 
 ### Changed
 - Big change!! Renamed tool and repo from Kali-Setup-Script to Kali-Boost. Such a better name.
@@ -15,7 +17,6 @@ All future changes from Version 1.0.4 and onward will be documented in this file
 - Verbosity option. Had to rewrite some of the code but it works. Default is silent or no verbose output unless user invokes with -v.
 - Function that lists all the tools that are going to be installed. Invoke with -l. Thats lowercase L as in lollipop or loser or legit.
 - Update function. Literally just updates Kali for you. Invoke with -u.
-
 #### Tools
 - dirsearch from [@maurosoria](https://github.com/maurosoria/dirsearch)
 -
