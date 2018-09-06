@@ -1,5 +1,14 @@
 # Changelog
 All future changes from Version 1.0.4 and onward will be documented in this file.
+## [1.1.2b] - 2018-09-06
+### Added
+#### Tools
+- crowbar from [@galkan](https://github.com/galkan/crowbar)
+
+## [1.1.2a] - 2018-07-18
+### Added
+#### Tools
+- onesixtyone from [@trailofbits](https://github.com/trailofbits/onesixtyone)
 
 ## [1.1.2] - 2018-05-23
 ### Added

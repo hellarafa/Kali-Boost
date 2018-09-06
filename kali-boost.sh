@@ -1,7 +1,7 @@
 #!/bin/bash
 #version
-v="1.1.2"
-d="05-23-18"
+v="1.1.2b"
+d="09-6-18"
 
 #################### ABOUT
 #
@@ -64,16 +64,14 @@ start() {
     wfuzz #26
     probableWordlists #27
     linEnum #28
-    meterssh #29
-    sigThief #30
-    dirsearch #31
+	meterssh #29
+	sigThief #30
+	dirsearch #31
 	psgetsystem #32
 	gobuster
-
-    #ADD LATER
-    #mimikatz trunk
-    #https://github.com/gentilkiwi/mimikatz/releases/latest
-    veilFramework
+	onesixtyone
+	crowbar
+	veilFramework
 }
 
 finished() {
@@ -115,7 +113,11 @@ toolsListA() {
     29 | MeterSSH
     30 | SigThief
     31 | dirsearch 
-    "
+	32 | psgetsystem
+	33 | Gobuster
+    34 | onesixtyone
+	35 | crowbar
+	"
     echo -e $green"#########################################################\n"$reset
 }
 
@@ -866,6 +868,44 @@ veilFramework() {
     sleep 1
 }
 
+onesixtyone() {
+	echo -e $green"Installing: onesixtyone"$reset
+		if [ ! -d "onesixtyone" ]; then
+			if [ "$verbose" = '0' ]; then
+				git clone https://github.com/trailofbits/onesixtyone.git &> /dev/null
+			elif [ "$verbose" = '1' ]; then
+				git clone https://github.com/trailofbits/onesixtyone.git
+			else
+				:
+		fi
+		ret="$?"
+		success "Successfully installed onesixtyone."
+            debug
+        else
+            skipmsg "Found onesixtyone in /opt. Skipping installation."
+        fi
+    sleep 1
+}
+
+crowbar() {
+	echo -e $green"Installing: crowbar"$reset
+		if [ ! -d "crowbar" ]; then
+			if [ "$verbose" = '0' ]; then
+				git clone https://github.com/galkan/crowbar.git &> /dev/null
+			elif [ "$verbose" = '1' ]; then
+				git clone https://github.com/galkan/crowbar.git
+			else
+				:
+		fi
+		ret="$?"
+		success "Successfully installed crowbar."
+            debug
+        else
+            skipmsg "Found crowbar in /opt. Skipping installation."
+        fi
+    sleep 1
+}
+
 #################### REDTEAM EVIL STUFF
 #
 #  These scripts are more evil in nature and are usually not used
@@ -911,7 +951,6 @@ backdoorFactory() {
         fi
     sleep 1
 }
-
 #################### TEMPLATE
 #
 #  if you want to add your own tool, just add this template code around
