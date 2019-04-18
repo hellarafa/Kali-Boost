@@ -1,5 +1,5 @@
 ###### [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/hellarafa/Kali-Setup-Script/issues) [![Hits](http://hits.dwyl.com/{hellarafa}/{Kali-Setup-Script}.svg)](http://hits.dwyl.com/{hellarafa}/{Kali-Setup-Script})
-# Kali Boost | v1.1.2
+# Kali Boost | v1.1.2b
 
 Installs popular pentesting tools in the /opt folder. Just run the script and watch the magic happen. Best if used on a fresh Kali install. Do not eat. :100:
 
